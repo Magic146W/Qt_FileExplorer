@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     fileexplorer.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tooltipmanager.cpp
 
 HEADERS += \
     fileexplorer.h \
-    mainwindow.h
+    mainwindow.h \
+    tooltipmanager.h
 
 FORMS += \
     mainwindow.ui
@@ -24,3 +26,7 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Icons.qrc \
+    resources.qrc
