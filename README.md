@@ -17,11 +17,25 @@ Build the Project: Open the project in Qt Creator and build the application.
 Run the Application: Start the application to explore and manage your files effortlessly.
 
 Usage
-File Navigation: Click on directories in the tree view to navigate through folders.
-File Operations: Use the toolbar buttons or context menu options for file operations.
-Layout Preferences: Switch between grid and list view using the layout checkbox.
-Light/Dark Mode: Toggle between light and dark mode using the dedicated checkbox.
-File Preview: Double-click on files to open images or text files for preview.
+File Navigation: 
+- Click on directories in the tree view
+- Double click folders in the list view
+- Click directory button (to the left of path above tree view)
+- Press copy-path button (to the right of path above tree view) to copy selected directory
+File Operations (Use the toolbar buttons or context menu options for file operations):
+- Create folder
+- Rename file or folder
+- Felete file or folder
+File Preview:
+- Double click on files to open images or text files for preview
+Layout Preferences:
+- Switch between grid and list view using the layout checkbox
+Light/Dark Mode:
+- Toggle between light and dark mode using the dedicated checkbox
+List view file preferences:
+- Hide or show folders at selected path
+
+
 License
 This project is developed for learning purposes using the open-source version of Qt Creator. The Qt framework is licensed under the GNU Lesser General Public License (LGPL) version 3.
 
