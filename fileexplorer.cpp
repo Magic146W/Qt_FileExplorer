@@ -10,36 +10,38 @@ FileExplorer::FileExplorer(QObject *parent) : QObject(parent)
     fileSystemModel = new QFileSystemModel(this);
 }
 
-FileExplorer* FileExplorer::getInstance()
-{
+FileExplorer* FileExplorer::getInstance(QObject *parent) {
     if (!instance) {
-        instance = new FileExplorer();
+        instance = new FileExplorer(parent);
     }
     return instance;
 }
 
 void FileExplorer::setupFileSystemModel(const QString& selectedDirectory)
 {
-    selectedDirectoryPath = selectedDirectory;
-    fileSystemModel->setRootPath(selectedDirectory);
+    QFileInfo fileInfo(selectedDirectory);
+
+    if (fileInfo.isDir())
+    {
+        fileSystemModel->setRootPath(selectedDirectory);
+    }
+
     emit SelectionDone(fileSystemModel);
-}
-
-void FileExplorer::GetDirectoryContent()
-{
-
 }
 
 void FileExplorer::OnTreeViewItemClicked(const QModelIndex &index)
 {
     if (index.isValid()) {
-        QString dirPath = index.data(Qt::DisplayRole).toString();
-        QFileInfo fileInfo(dirPath);
-        if (fileInfo.isDir()) {
-           selectedDirectoryPath = dirPath;
-           GetDirectoryContent();
-        } else {
-            return;
-        }
+        QString dirPath = fileSystemModel->filePath(index);
+        fileSystemModel->setRootPath(dirPath);
+        emit SelectionDone(fileSystemModel);
+    }
+}
+
+void FileExplorer::OnListViewItemClicked(const QModelIndex &index)
+{
+    if (index.isValid()) {
+        QString dirPath = fileSystemModel->filePath(index);
+        emit FileSelected(dirPath);
     }
 }

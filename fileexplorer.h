@@ -14,24 +14,24 @@ class FileExplorer : public QObject
     Q_OBJECT
 
 public:
-    static FileExplorer* getInstance();
+    static FileExplorer* getInstance(QObject *parent = nullptr);
     void setupFileSystemModel(const QString& selectedDirectory = QString());
+
 
 private:
     explicit FileExplorer(QObject *parent = nullptr);
     static FileExplorer* instance;
     QFileSystemModel *fileSystemModel;
-    QString selectedDirectoryPath;
 
 
 signals:
     void SelectionDone(QFileSystemModel *model);
+    void FileSelected(const QString& filePath);
 
 
 public slots:
     void OnTreeViewItemClicked(const QModelIndex &index);
-    void GetDirectoryContent();
-
+    void OnListViewItemClicked(const QModelIndex &index);
 };
 
 #endif // FILEEXPLORER_H

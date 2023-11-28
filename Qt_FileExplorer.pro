@@ -10,17 +10,27 @@ CONFIG += c++17
 
 SOURCES += \
     fileexplorer.cpp \
+    filelistmodel.cpp \
+    fileviewerwindow.cpp \
+    itemnamemodifierdelegate.cpp \
     main.cpp \
     mainwindow.cpp \
-    tooltipmanager.cpp
+    noemptyfoldersmodel.cpp \
+    secondarywindow.cpp
 
 HEADERS += \
     fileexplorer.h \
+    filelistmodel.h \
+    fileviewerwindow.h \
+    itemnamemodifierdelegate.h \
     mainwindow.h \
-    tooltipmanager.h
+    noemptyfoldersmodel.h \
+    secondarywindow.h
 
 FORMS += \
-    mainwindow.ui
+    fileviewerwindow.ui \
+    mainwindow.ui \
+    secondarywindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

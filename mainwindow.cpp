@@ -1,43 +1,63 @@
 #include "mainwindow.h"
+#include "filelistmodel.h"
+#include "fileviewerwindow.h"
+#include "noemptyfoldersmodel.h"
 #include "ui_mainwindow.h"
 #include "fileexplorer.h"
+#include "itemnamemodifierdelegate.h"
+#include "secondarywindow.h"
 #include <QFileDialog>
 #include <QFileSystemModel>
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <QToolTip>
+#include <QMouseEvent>
+#include <QClipboard>
+#include <QMessageBox>
+#include <QStringListModel>
+#include <QSettings>
 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindow),
+    localFileSystemModel(new QFileSystemModel(this))
 {
     ui->setupUi(this);
 
     FileExplorer *fileExplorerInstance = FileExplorer::getInstance();
+    noEmptyfolderModel = new NoEmptyFoldersModel(this);
+    fileListModel = new FileListModel(this);
 
+    ui->FileContainerFrame->installEventFilter(this);
+
+
+    QObject::connect(fileExplorerInstance, &FileExplorer::SelectionDone, this, &MainWindow::PopulateFileViewer);
     QObject::connect(fileExplorerInstance, &FileExplorer::SelectionDone, this, &MainWindow::ShowTree);
+    QObject::connect(fileExplorerInstance, &FileExplorer::FileSelected, this, &MainWindow::GetSelectedItemPath);
+
     QObject::connect(ui->TreeView, &QTreeView::clicked, fileExplorerInstance, &FileExplorer::OnTreeViewItemClicked);
 
+    QObject::connect(ui->FileViewer, &QListView::clicked, fileExplorerInstance, &FileExplorer::OnListViewItemClicked);
+    QObject::connect(ui->FileViewer, &QListView::doubleClicked, this, &MainWindow::onListViewItemDoubleClicked);
+
+
     fileExplorerInstance->setupFileSystemModel(QDir::rootPath());
+    localFileSystemModel->setRootPath(QDir::rootPath());
+    ui->TreeView->collapseAll();
 
 
-    connect(ui->LightDarkModeCheckBox, &QCheckBox::stateChanged, this, &MainWindow::on_LightDarkMode_stateChanged);
-    on_LightDarkMode_stateChanged(ui->LightDarkModeCheckBox->checkState());
+    ui->TreeView->header()->resizeSection(0, 300);
+    splitterLeftAndRightPanels();
+    PopulateFileViewer(nullptr);
 
-    connect(ui->LayoutCheckBox, &QCheckBox::stateChanged, this, &MainWindow::on_LayoutCheckBox_stateChanged);
+
+    on_LightDarkModeCheckBox_stateChanged(ui->LightDarkModeCheckBox->checkState());
     on_LayoutCheckBox_stateChanged(ui->LayoutCheckBox->checkState());
-
-    connect(ui->HideFilesCheckBox, &QCheckBox::stateChanged, this, &MainWindow::on_HideFilesCheckBox_stateChanged);
     on_HideFilesCheckBox_stateChanged(ui->HideFilesCheckBox->checkState());
 
 
-    MainWindowDisplayChanges();
-
-
-    //if(dataToLoad==null)
-    QString tooltipText = "C:\\";
-    SetToolTipBehavior(ui->DirectoryTextDisplay, tooltipText);
+    loadLayout();
 }
 
 MainWindow::~MainWindow()
@@ -45,55 +65,237 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::SetToolTipBehavior(QObject* object, const QString& tooltipText)
+bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
+    if (obj == ui->FileContainerFrame && event->type() == QEvent::Resize) {
+        handleFileContainerFrameResize();
+    }
+
+    return QMainWindow::eventFilter(obj, event);
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
+    QSettings settings("Organization", "Application");
+    settings.setValue("SplitterSizes", splitter->saveState());
+    saveLayout();
+    QMainWindow::closeEvent(event);
+}
+
+void MainWindow::loadLayout()
 {
-    if (tooltipMap.contains(object))
+    QSettings settings("MyApp", "MyAppSettings");
+
+    resize(settings.value("WindowSize", QSize(800, 600)).toSize());
+
+    ui->LightDarkModeCheckBox->setChecked(settings.value("LightDarkModeCheckBox", false).toBool());
+    ui->LayoutCheckBox->setChecked(settings.value("LayoutCheckBox", false).toBool());
+    ui->HideFilesCheckBox->setChecked(settings.value("HideFilesCheckBox", false).toBool());
+
+    QString rootPath = settings.value("RootPath", QDir::homePath()).toString();
+    if(!rootPath.isEmpty())
+    {
+        localFileSystemModel->setRootPath(rootPath);
+        ui->DirectoryTextDisplay->setText(rootPath);
+        ShowTree(localFileSystemModel);
+        PopulateFileViewer(localFileSystemModel);
+    }
+
+    QSettings splitterSize("Organization", "Application");
+    QByteArray splitterState = splitterSize.value("SplitterSizes").toByteArray();
+
+    if (!splitterState.isEmpty()) {
+        splitter->restoreState(splitterState);
+    }
+
+    loadStyleSheet();
+}
+
+void MainWindow::saveLayout()
+{
+    QSettings settings("MyApp", "MyAppSettings");
+
+    settings.setValue("WindowSize", size());
+
+    settings.setValue("LightDarkModeCheckBox", ui->LightDarkModeCheckBox->isChecked());
+    settings.setValue("LayoutCheckBox", ui->LayoutCheckBox->isChecked());
+    settings.setValue("HideFilesCheckBox", ui->HideFilesCheckBox->isChecked());
+
+    settings.setValue("RootPath", ui->DirectoryTextDisplay->text());
+    settings.sync();
+}
+
+
+void MainWindow::loadStyleSheet()
+{
+    QString resourcePath;
+    QString styleSheet;
+    if(ui->LightDarkModeCheckBox->isChecked())
+    {
+        resourcePath = ":/StyleSheet/StyleSheet_Light.txt";
+
+        styleSheet = "background-color: #1a0b27;";
+        ui->BottomMainLine->setStyleSheet(styleSheet);
+        ui->TopMainLine->setStyleSheet(styleSheet);
+        ui->FileManagement_Line_1->setStyleSheet(styleSheet);
+        ui->FileManagement_Line_2->setStyleSheet(styleSheet);
+        ui->FileManagement_Line_3->setStyleSheet(styleSheet);
+
+        styleSheet = "background-color: #f7ead0;";
+        ui->TreeView->setStyleSheet(styleSheet);
+        ui->FileViewer->setStyleSheet(styleSheet);
+    }else
+    {
+        resourcePath = ":/StyleSheet/StyleSheet_Dark.txt";
+
+        styleSheet = "background-color: #f7ead0;";
+        ui->BottomMainLine->setStyleSheet(styleSheet);
+        ui->TopMainLine->setStyleSheet(styleSheet);
+        ui->FileManagement_Line_1->setStyleSheet(styleSheet);
+        ui->FileManagement_Line_2->setStyleSheet(styleSheet);
+        ui->FileManagement_Line_3->setStyleSheet(styleSheet);
+
+        styleSheet = "background-color: #1a0b27;";
+        ui->TreeView->setStyleSheet(styleSheet);
+        ui->FileViewer->setStyleSheet(styleSheet);
+    }
+
+
+    QFile file(resourcePath);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         return;
     }
 
-    tooltipMap[object] = tooltipText;
+    QString styleSheetContent = file.readAll();
+    file.close();
 
-    connect(object, &QObject::objectNameChanged, this, [=]()
-            {
-                if (tooltipMap.contains(object))
-                {
-                    tooltipMap.remove(object);
-                }
-            });
-
-    connect(object, &QObject::destroyed, this, [=]()
-            {
-                if (tooltipMap.contains(object))
-                {
-                    tooltipMap.remove(object);
-                }
-            });
-
-    object->installEventFilter(this);
+    ui->centralwidget->setStyleSheet(styleSheetContent);
 }
 
-void MainWindow::OnObjectEntered(QObject* obj)
+QString MainWindow::updateIconColorName(QString filePath)
 {
-    QString tooltipText = tooltipMap.value(obj);
-    if (!tooltipText.isEmpty())
+    QString prefix = ui->LightDarkModeCheckBox->isChecked() ? "B" : "W";
+
+    QFileInfo fileInfo(filePath);
+    QString baseName = fileInfo.baseName();
+    QString extension = fileInfo.completeSuffix();
+
+    QString updatedFilePath = QString(":/Images/Icons/%1%2.%3").arg(baseName).arg(prefix).arg(extension);
+
+    return updatedFilePath;
+}
+
+void MainWindow::updateIconsToMode()
+{
+    QString updatedIcon = updateIconColorName("copy.png");
+    QIcon icon(updatedIcon);
+    ui->CopyButton->setIcon(icon);
+
+    updatedIcon = updateIconColorName("Drive.png");
+    icon.addFile(updatedIcon);
+    ui->DirectoryButton->setIcon(icon);
+
+    updatedIcon = updateIconColorName("edit.png");
+    icon.addFile(updatedIcon);
+    ui->RenameFile->setIcon(icon);
+
+    updatedIcon = updateIconColorName("trash.png");
+    icon.addFile(updatedIcon);
+    ui->DeleteFile->setIcon(icon);
+
+    updatedIcon = updateIconColorName("Folder.png");
+    icon.addFile(updatedIcon);
+    ui->AddFolder->setIcon(icon);
+
+
+
+    on_HideFilesCheckBox_stateChanged(ui->HideFilesCheckBox->checkState());
+    on_LayoutCheckBox_stateChanged(ui->LayoutCheckBox->checkState());
+}
+
+void MainWindow::handleFileContainerFrameResize()
+{
+    ui->FileViewer->resize(ui->FileContainerFrame->size());
+
+    QFileSystemModel *model = qobject_cast<QFileSystemModel*>(ui->FileViewer->model());
+    if (model)
     {
-        QToolTip::showText(QCursor::pos(), tooltipText);
+        QString directoryPath = model->rootPath();
+        model->setRootPath("");
+        model->setRootPath(directoryPath);
+    }
+    else
+    {
+        FileListModel *currentModel = qobject_cast<FileListModel*>(ui->FileViewer->model());
+        if (currentModel)
+        {
+            ui->FileViewer->setModel(nullptr);
+            ui->FileViewer->setModel(fileListModel);
+        }
     }
 }
 
-void MainWindow::OnObjectLeft(QObject* obj)
+void MainWindow::ShowTree(QFileSystemModel* model)
 {
-    Q_UNUSED(obj);
-    QToolTip::hideText();
+    clearListViewSelection();
+    QString path = model->rootPath();
+    localFileSystemModel->setRootPath(path);
+    noEmptyfolderModel->setRootPath(path);
+    noEmptyfolderModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
+
+    ui->TreeView->collapseAll();
+    ui->TreeView->setModel(noEmptyfolderModel);
+
+    ui->DirectoryTextDisplay->setText(path);
+
+    QModelIndex index = noEmptyfolderModel->index(path);
+    if (index.isValid())
+    {
+        ui->TreeView->expand(index);
+        ui->TreeView->setCurrentIndex(index);
+        ui->TreeView->scrollTo(index, QAbstractItemView::PositionAtCenter);
+    }
 }
 
-void MainWindow::MainWindowDisplayChanges()
+void MainWindow::PopulateFileViewer(QFileSystemModel* model)
+{
+    clearListViewSelection();
+    if(!model)
+    {
+        localFileSystemModel->removeRows(0, localFileSystemModel->rowCount());
+        localFileSystemModel->setRootPath("");
+        ui->FileViewer->setModel(localFileSystemModel);
+        ui->FileViewer->setRootIndex(localFileSystemModel->index(""));
+
+    }
+    else
+    {
+        localFileSystemModel = model;
+        QString directoryPath = localFileSystemModel->rootPath();
+        localFileSystemModel->setRootPath(directoryPath);
+
+        if (!ui->HideFilesCheckBox->isChecked())
+        {
+            ui->FileViewer->setModel(localFileSystemModel);
+            ui->FileViewer->setRootIndex(localFileSystemModel->index(directoryPath));
+        } else
+        {
+            if(!directoryPath.isEmpty())
+            {
+                fileListModel->setFileData(directoryPath);
+                ui->FileViewer->setModel(fileListModel);
+            }
+        }
+
+        ui->FileViewer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    }
+}
+
+void MainWindow::splitterLeftAndRightPanels()
 {
     QWidget *widgetLeftPanel = ui->LeftPanelWidget;
     QWidget *widgetRightPanel = ui->CentralPanelWidget;
 
-    QSplitter *splitter = new QSplitter(Qt::Horizontal, this);
+    splitter = new QSplitter(Qt::Horizontal, this);
 
     splitter->addWidget(widgetLeftPanel);
     splitter->addWidget(widgetRightPanel);
@@ -109,67 +311,141 @@ void MainWindow::MainWindowDisplayChanges()
 
     QWidget *widget = ui->MainContentPanel;
     delete widget;
-
-    //functions...
-    //load from saved data
-    //save data
 }
 
-void MainWindow::ShowTree(QFileSystemModel* model)
+
+void MainWindow::onListViewItemDoubleClicked(const QModelIndex &index)
 {
-    ui->TreeView->setModel(model);
+    if (index.isValid())
+    {
+        QString filePath = localFileSystemModel->filePath(index);
+        QFileInfo fileInfo(filePath);
+        if (fileInfo.isDir())
+        {
+            localFileSystemModel->setRootPath(filePath);
+            PopulateFileViewer(localFileSystemModel);
+            ShowTree(localFileSystemModel);
+            ui->DirectoryTextDisplay->setText(filePath);
+        } else
+        {
+            QFile file(filePath);
+            if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                return;
+            }
+
+            QFileInfo fileInfo(filePath);
+
+            if (fileInfo.suffix().compare("png", Qt::CaseInsensitive) == 0 ||
+                fileInfo.suffix().compare("jpg", Qt::CaseInsensitive) == 0 ||
+                fileInfo.suffix().compare("jpeg", Qt::CaseInsensitive) == 0 ||
+                fileInfo.suffix().compare("bmp", Qt::CaseInsensitive) == 0 ||
+                fileInfo.suffix().compare("gif", Qt::CaseInsensitive) == 0 ||
+                fileInfo.suffix().compare("tiff", Qt::CaseInsensitive) == 0)
+            {
+                FileViewerWindow* imageViewer = new FileViewerWindow(this);
+                imageViewer->openImage(filePath);
+                imageViewer->show();
+            }
+            else if (fileInfo.suffix().compare("txt", Qt::CaseInsensitive) == 0 ||
+                     fileInfo.suffix().compare("text", Qt::CaseInsensitive) == 0)
+            {
+                FileViewerWindow* textViewer = new FileViewerWindow(this);
+                textViewer->loadTextFile(filePath);
+                textViewer->show();
+            }
+        }
+    }
 }
 
-#pragma region CheckBoxManagement{
-void MainWindow::on_LightDarkMode_stateChanged(int state)
+void MainWindow::GetSelectedItemPath(QString path)
+{
+    selectedItemPath = path;
+}
+
+void MainWindow::clearListViewSelection()
+{
+    selectedItemPath.clear();
+}
+
+QString MainWindow::treeViewSelectedItemPath()
+{
+    clearListViewSelection();
+    QModelIndex currentIndex = ui->TreeView->selectionModel()->currentIndex();
+
+    if (currentIndex.isValid())
+    {
+        QVariant data = currentIndex.data(QFileSystemModel::FilePathRole);
+        if (data.isValid())
+        {
+            QString path = data.toString();
+            return path;
+        }
+    }
+    return "";
+}
+
+void MainWindow::on_LightDarkModeCheckBox_stateChanged(int state)
 {
     QString styleSheet;
 
-    if (state == Qt::Checked) {
+    if (state == Qt::Checked)
+    {
         styleSheet = "QCheckBox#LightDarkModeCheckBox::indicator:checked { image: url(:/Images/Icons/Mode_Light.png); width: 64px; height: 32px;}";
-    } else {
+    } else
+    {
         styleSheet = "QCheckBox#LightDarkModeCheckBox::indicator:unchecked { image: url(:/Images/Icons/Mode_Dark.png); width: 64px; height: 32px;}";
     }
 
     ui->LightDarkModeCheckBox->setStyleSheet(styleSheet);
-    //manage mode
+
+
+    updateIconsToMode();
+    loadStyleSheet();
 }
 
 void MainWindow::on_LayoutCheckBox_stateChanged(int state)
 {
     QString styleSheet;
+    ui->FileViewer->setItemDelegate(nullptr);
 
-    if (state == Qt::Checked) {
-        styleSheet = "QCheckBox#LayoutCheckBox::indicator:checked { image: url(:/Images/Icons/grid.svg); width: 24px; height: 24px;}";
-    } else {
-        styleSheet = "QCheckBox#LayoutCheckBox::indicator:unchecked { image: url(:/Images/Icons/list.svg); width: 24px; height: 24px;}";
+    if (state == Qt::Checked)
+    {
+        QString updatedIcon = updateIconColorName("grid.png");
+        styleSheet = QString("QCheckBox#LayoutCheckBox::indicator:checked { image: url(%1); width: 24px; height: 24px;}").arg(updatedIcon);
+        ui->FileViewer->setViewMode(QListView::IconMode);
+        ItemNameModifierDelegate* delegate = new ItemNameModifierDelegate(this);
+        delegate->setCustomSize(QSize(120, 120));
+        ui->FileViewer->setItemDelegate(delegate);
+    } else
+    {
+        QString updatedIcon = updateIconColorName("List.png");
+        styleSheet = QString("QCheckBox#LayoutCheckBox::indicator:unchecked { image: url(%1); width: 24px; height: 24px;}").arg(updatedIcon);
+        ui->FileViewer->setViewMode(QListView::ListMode);
+        ItemNameModifierDelegate* delegate = new ItemNameModifierDelegate(this);
+        delegate->setCustomSize(QSize(30, 30));
+        ui->FileViewer->setItemDelegate(delegate);
     }
 
     ui->LayoutCheckBox->setStyleSheet(styleSheet);
-    //do something for layout
+    handleFileContainerFrameResize();
 }
 
 void MainWindow::on_HideFilesCheckBox_stateChanged(int state)
 {
     QString styleSheet;
 
-    if (state == Qt::Checked) {
-        styleSheet = "QCheckBox#HideFilesCheckBox::indicator:checked { image: url(:/Images/Icons/eye-off.svg); width: 24px; height: 24px;}";
-    } else {
-        styleSheet = "QCheckBox#HideFilesCheckBox::indicator:unchecked { image: url(:/Images/Icons/eye.svg); width: 24px; height: 24px;}";
+    if (state == Qt::Checked)
+    {
+        QString updatedIcon = updateIconColorName("Eye_off.png");
+        styleSheet = QString("QCheckBox#HideFilesCheckBox::indicator:checked { image: url(%1); width: 24px; height: 24px;}").arg(updatedIcon);
+    } else
+    {
+        QString updatedIcon = updateIconColorName("eye.png");
+        styleSheet = QString("QCheckBox#HideFilesCheckBox::indicator:unchecked { image: url(%1); width: 24px; height: 24px;}").arg(updatedIcon);
     }
 
+    PopulateFileViewer(localFileSystemModel);
     ui->HideFilesCheckBox->setStyleSheet(styleSheet);
-    //hide/show files
-}
-#pragma endregion}
-
-
-
-void MainWindow::on_SearchIcon_clicked()
-{
-    //check search options
-    //go through files inside list of selected folder, if not there search further into nested folders
 }
 
 void MainWindow::on_DirectoryButton_clicked()
@@ -178,15 +454,51 @@ void MainWindow::on_DirectoryButton_clicked()
                                                                   QDir::homePath(),
                                                                   QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
-    if (!selectedDirectory.isEmpty())
-    {
-        ui->DirectoryTextDisplay->setText(selectedDirectory);
-        SetToolTipBehavior(ui->DirectoryTextDisplay, selectedDirectory);
-        fileExplorer->setupFileSystemModel(selectedDirectory);
-    }
+    ui->DirectoryTextDisplay->setText(selectedDirectory);
+    FileExplorer::getInstance()->setupFileSystemModel(selectedDirectory);
 }
 
+void MainWindow::on_CopyButton_clicked()
+{
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(ui->DirectoryTextDisplay->displayText());
+}
 
+void MainWindow::on_AddFolder_clicked()
+{
+    if(selectedItemPath.isEmpty())
+    {
+        selectedItemPath = treeViewSelectedItemPath();
+    }
 
+    SecondaryWindow *secondaryWindow = new SecondaryWindow(selectedItemPath, 'c');
+    connect(secondaryWindow, &SecondaryWindow::selectionClear, this, &MainWindow::clearListViewSelection);
 
+    secondaryWindow->show();
+}
 
+void MainWindow::on_RenameFile_clicked()
+{
+    if(selectedItemPath.isEmpty())
+    {
+        return;
+    }
+
+    SecondaryWindow *secondaryWindow = new SecondaryWindow(selectedItemPath, 'r');
+    connect(secondaryWindow, &SecondaryWindow::selectionClear, this, &MainWindow::clearListViewSelection);
+
+    secondaryWindow->show();
+}
+
+void MainWindow::on_DeleteFile_clicked()
+{
+    if(selectedItemPath.isEmpty())
+    {
+        return;
+    }
+
+    SecondaryWindow *secondaryWindow = new SecondaryWindow(selectedItemPath, 'd');
+    connect(secondaryWindow, &SecondaryWindow::selectionClear, this, &MainWindow::clearListViewSelection);
+
+    secondaryWindow->show();
+}
