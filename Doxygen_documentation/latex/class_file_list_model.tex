@@ -1,0 +1,98 @@
+\doxysection{File\+List\+Model Class Reference}
+\hypertarget{class_file_list_model}{}\label{class_file_list_model}\index{FileListModel@{FileListModel}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_file_list_model_a5b9a47f7aea7d968d51134e2467135b9}{File\+List\+Model}} (QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em The \doxylink{class_file_list_model}{File\+List\+Model} class represents a custom model for file data representation in a QList\+View. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_file_list_model_a92196da3cf761d9b0f32a947ace860aa}{set\+File\+Data}} (const QString \&path)
+\begin{DoxyCompactList}\small\item\em Sets file data from the specified directory path to the model. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_file_list_model_a20e614ee41e9e680b8b7e4378c6c274c}{row\+Count}} (const QModel\+Index \&parent=QModel\+Index()) const override
+\begin{DoxyCompactList}\small\item\em Returns the number of rows in the model. \end{DoxyCompactList}\item 
+QVariant \mbox{\hyperlink{class_file_list_model_a91d12bffec0ae14f721d665bcaeeb6bc}{data}} (const QModel\+Index \&index, int role=Qt\+::\+Display\+Role) const override
+\begin{DoxyCompactList}\small\item\em Returns the data to be displayed at a specified model index and role. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_file_list_model_a33bb0d4048f36bf76aade359db36a21e}\label{class_file_list_model_a33bb0d4048f36bf76aade359db36a21e} 
+QFile\+Info\+List {\bfseries file\+Data}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_file_list_model_a5b9a47f7aea7d968d51134e2467135b9}\label{class_file_list_model_a5b9a47f7aea7d968d51134e2467135b9} 
+\index{FileListModel@{FileListModel}!FileListModel@{FileListModel}}
+\index{FileListModel@{FileListModel}!FileListModel@{FileListModel}}
+\doxysubsubsection{\texorpdfstring{FileListModel()}{FileListModel()}}
+{\footnotesize\ttfamily File\+List\+Model\+::\+File\+List\+Model (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+The \doxylink{class_file_list_model}{File\+List\+Model} class represents a custom model for file data representation in a QList\+View. 
+
+This model inherits from QAbstract\+List\+Model and manages file data to be displayed in the QList\+View. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_file_list_model_a91d12bffec0ae14f721d665bcaeeb6bc}\label{class_file_list_model_a91d12bffec0ae14f721d665bcaeeb6bc} 
+\index{FileListModel@{FileListModel}!data@{data}}
+\index{data@{data}!FileListModel@{FileListModel}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily QVariant File\+List\+Model\+::data (\begin{DoxyParamCaption}\item[{const QModel\+Index \&}]{index,  }\item[{int}]{role = {\ttfamily Qt\+:\+:DisplayRole} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Returns the data to be displayed at a specified model index and role. 
+
+Retrieves the file name for the Display\+Role and icon for the Decoration\+Role at the given QModel\+Index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The model index. \\
+\hline
+{\em role} & The requested role (Display\+Role or Decoration\+Role). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+QVariant The data associated with the specified index and role. 
+\end{DoxyReturn}
+\Hypertarget{class_file_list_model_a20e614ee41e9e680b8b7e4378c6c274c}\label{class_file_list_model_a20e614ee41e9e680b8b7e4378c6c274c} 
+\index{FileListModel@{FileListModel}!rowCount@{rowCount}}
+\index{rowCount@{rowCount}!FileListModel@{FileListModel}}
+\doxysubsubsection{\texorpdfstring{rowCount()}{rowCount()}}
+{\footnotesize\ttfamily int File\+List\+Model\+::row\+Count (\begin{DoxyParamCaption}\item[{const QModel\+Index \&}]{parent = {\ttfamily QModelIndex()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Returns the number of rows in the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent QModel\+Index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The number of rows in the model (size of the file data list). 
+\end{DoxyReturn}
+\Hypertarget{class_file_list_model_a92196da3cf761d9b0f32a947ace860aa}\label{class_file_list_model_a92196da3cf761d9b0f32a947ace860aa} 
+\index{FileListModel@{FileListModel}!setFileData@{setFileData}}
+\index{setFileData@{setFileData}!FileListModel@{FileListModel}}
+\doxysubsubsection{\texorpdfstring{setFileData()}{setFileData()}}
+{\footnotesize\ttfamily void File\+List\+Model\+::set\+File\+Data (\begin{DoxyParamCaption}\item[{const QString \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Sets file data from the specified directory path to the model. 
+
+Clears the existing data and populates the model with file information (excluding \textquotesingle{}.\textquotesingle{} and \textquotesingle{}..\textquotesingle{} entries) from the given directory path.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The directory path containing file data. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/macwe/\+Documents/\+Qt-\/\+Projects/\+Qt\+\_\+\+File\+Explorer/filelistmodel.\+h\item 
+C\+:/\+Users/macwe/\+Documents/\+Qt-\/\+Projects/\+Qt\+\_\+\+File\+Explorer/filelistmodel.\+cpp\end{DoxyCompactItemize}

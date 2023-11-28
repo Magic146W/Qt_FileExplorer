@@ -1,0 +1,100 @@
+\doxysection{Item\+Name\+Modifier\+Delegate Class Reference}
+\hypertarget{class_item_name_modifier_delegate}{}\label{class_item_name_modifier_delegate}\index{ItemNameModifierDelegate@{ItemNameModifierDelegate}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_item_name_modifier_delegate_a7a3a4bb0fbe51a95d2301e2a18930cad}{Item\+Name\+Modifier\+Delegate}} (QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em The \doxylink{class_item_name_modifier_delegate}{Item\+Name\+Modifier\+Delegate} class customizes the appearance of items in a view, particularly the text display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_name_modifier_delegate_ac855d4118d4cd1c8fb2768ff84abe97f}{set\+Custom\+Size}} (const QSize \&size)
+\begin{DoxyCompactList}\small\item\em Sets a custom size for the item view. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_name_modifier_delegate_a47de952441182bc7253ca6e14c6c956f}{paint}} (QPainter \texorpdfstring{$\ast$}{*}painter, const QStyle\+Option\+View\+Item \&option, const QModel\+Index \&index) const override
+\begin{DoxyCompactList}\small\item\em Paints the item in the view using customized options. \end{DoxyCompactList}\item 
+QSize \mbox{\hyperlink{class_item_name_modifier_delegate_ad47eda31fde3cd094a2dde09cc68f613}{size\+Hint}} (const QStyle\+Option\+View\+Item \&option, const QModel\+Index \&index) const override
+\begin{DoxyCompactList}\small\item\em Returns the size hint for the item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_item_name_modifier_delegate_a7a3a4bb0fbe51a95d2301e2a18930cad}\label{class_item_name_modifier_delegate_a7a3a4bb0fbe51a95d2301e2a18930cad} 
+\index{ItemNameModifierDelegate@{ItemNameModifierDelegate}!ItemNameModifierDelegate@{ItemNameModifierDelegate}}
+\index{ItemNameModifierDelegate@{ItemNameModifierDelegate}!ItemNameModifierDelegate@{ItemNameModifierDelegate}}
+\doxysubsubsection{\texorpdfstring{ItemNameModifierDelegate()}{ItemNameModifierDelegate()}}
+{\footnotesize\ttfamily Item\+Name\+Modifier\+Delegate\+::\+Item\+Name\+Modifier\+Delegate (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+The \doxylink{class_item_name_modifier_delegate}{Item\+Name\+Modifier\+Delegate} class customizes the appearance of items in a view, particularly the text display. 
+
+Constructs an \doxylink{class_item_name_modifier_delegate}{Item\+Name\+Modifier\+Delegate} object with the specified parent and sets the default custom size.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent QObject. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_item_name_modifier_delegate_a47de952441182bc7253ca6e14c6c956f}\label{class_item_name_modifier_delegate_a47de952441182bc7253ca6e14c6c956f} 
+\index{ItemNameModifierDelegate@{ItemNameModifierDelegate}!paint@{paint}}
+\index{paint@{paint}!ItemNameModifierDelegate@{ItemNameModifierDelegate}}
+\doxysubsubsection{\texorpdfstring{paint()}{paint()}}
+{\footnotesize\ttfamily void Item\+Name\+Modifier\+Delegate\+::paint (\begin{DoxyParamCaption}\item[{QPainter \texorpdfstring{$\ast$}{*}}]{painter,  }\item[{const QStyle\+Option\+View\+Item \&}]{option,  }\item[{const QModel\+Index \&}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Paints the item in the view using customized options. 
+
+Modifies the style options for painting and then draws the item view.
+
+
+\begin{DoxyParams}{Parameters}
+{\em painter} & The QPainter object used for painting. \\
+\hline
+{\em option} & The style options for the item view. \\
+\hline
+{\em index} & The model index of the item. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_item_name_modifier_delegate_ac855d4118d4cd1c8fb2768ff84abe97f}\label{class_item_name_modifier_delegate_ac855d4118d4cd1c8fb2768ff84abe97f} 
+\index{ItemNameModifierDelegate@{ItemNameModifierDelegate}!setCustomSize@{setCustomSize}}
+\index{setCustomSize@{setCustomSize}!ItemNameModifierDelegate@{ItemNameModifierDelegate}}
+\doxysubsubsection{\texorpdfstring{setCustomSize()}{setCustomSize()}}
+{\footnotesize\ttfamily void Item\+Name\+Modifier\+Delegate\+::set\+Custom\+Size (\begin{DoxyParamCaption}\item[{const QSize \&}]{size }\end{DoxyParamCaption})}
+
+
+
+Sets a custom size for the item view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The custom size to be set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_item_name_modifier_delegate_ad47eda31fde3cd094a2dde09cc68f613}\label{class_item_name_modifier_delegate_ad47eda31fde3cd094a2dde09cc68f613} 
+\index{ItemNameModifierDelegate@{ItemNameModifierDelegate}!sizeHint@{sizeHint}}
+\index{sizeHint@{sizeHint}!ItemNameModifierDelegate@{ItemNameModifierDelegate}}
+\doxysubsubsection{\texorpdfstring{sizeHint()}{sizeHint()}}
+{\footnotesize\ttfamily QSize Item\+Name\+Modifier\+Delegate\+::size\+Hint (\begin{DoxyParamCaption}\item[{const QStyle\+Option\+View\+Item \&}]{option,  }\item[{const QModel\+Index \&}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Returns the size hint for the item. 
+
+Returns the custom size for the item view if the index is valid; otherwise, returns the default size.
+
+
+\begin{DoxyParams}{Parameters}
+{\em option} & The style options for the item view. \\
+\hline
+{\em index} & The model index of the item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The size hint for the item. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/macwe/\+Documents/\+Qt-\/\+Projects/\+Qt\+\_\+\+File\+Explorer/itemnamemodifierdelegate.\+h\item 
+C\+:/\+Users/macwe/\+Documents/\+Qt-\/\+Projects/\+Qt\+\_\+\+File\+Explorer/itemnamemodifierdelegate.\+cpp\end{DoxyCompactItemize}

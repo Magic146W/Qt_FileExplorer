@@ -4,24 +4,22 @@
         <file>Icons/Mode_Light.png</file>
         <file>Icons/copyB.png</file>
         <file>Icons/copyW.png</file>
-        <file>Icons/DriveB.png</file>
-        <file>Icons/DriveW.png</file>
+        <file>Icons/driveB.png</file>
+        <file>Icons/driveW.png</file>
         <file>Icons/editB.png</file>
         <file>Icons/editW.png</file>
-        <file>Icons/Eye_offB.png</file>
-        <file>Icons/Eye_offW.png</file>
+        <file>Icons/eye_offB.png</file>
+        <file>Icons/eye_offW.png</file>
         <file>Icons/eyeB.png</file>
         <file>Icons/eyeW.png</file>
-        <file>Icons/FileB.png</file>
-        <file>Icons/FolderB.png</file>
-        <file>Icons/FolderW.png</file>
-        <file>Icons/trashB.png</file>
-        <file>Icons/trashW.png</file>
+        <file>Icons/folderB.png</file>
+        <file>Icons/folderW.png</file>
         <file>Icons/gridB.png</file>
         <file>Icons/gridW.png</file>
-        <file>Icons/ListB.png</file>
-        <file>Icons/ListW.png</file>
-        <file>Icons/FileW.png</file>
+        <file>Icons/listB.png</file>
+        <file>Icons/listW.png</file>
+        <file>Icons/trashB.png</file>
+        <file>Icons/trashW.png</file>
     </qresource>
     <qresource prefix="/StyleSheet">
         <file>StyleSheet_Light.txt</file>

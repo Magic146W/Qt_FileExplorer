@@ -11,6 +11,17 @@ SecondaryWindow::SecondaryWindow(QWidget *parent) :
     ui->setupUi(this);
 }
 
+/**
+ * \brief Constructor for SecondaryWindow with specific parameters.
+ *
+ * Constructs a SecondaryWindow object with specified action and path, and the specified parent.
+ * Closes the window if the provided path is empty.
+ * Initializes the UI and loads necessary data.
+ *
+ * \param path The path for file or folder.
+ * \param action The action indicator for 'c'reate, 'r'ename, or 'd'elete.
+ * \param parent The parent widget.
+ */
 SecondaryWindow::SecondaryWindow(const QString &path, const QChar &action, QWidget *parent)
     : QDialog(parent), ui(new Ui::SecondaryWindow), actionIndicator(action), rootPath(path)
 {
@@ -28,7 +39,10 @@ SecondaryWindow::~SecondaryWindow()
     delete ui;
 }
 
-
+/**
+ * \brief Loads necessary data based on the action indicator.
+ * Sets up UI labels and text based on the provided action and file/folder path.
+ */
 void SecondaryWindow::loadNecessaryData()
 {
     QFileInfo fileInfo(rootPath);
@@ -69,10 +83,13 @@ void SecondaryWindow::loadNecessaryData()
 
         ui->Label_Name->setText("You are trying to create folder at: ");
     }
-
-
 }
 
+/**
+ * \brief Slot triggered on 'Accept' button click.
+ * Performs respective action based on the action indicator ('d', 'r', 'c').
+ * Emits signal 'selectionClear' after action completion.
+ */
 void SecondaryWindow::on_AcceptButton_clicked()
 {
     if (actionIndicator == 'd')
@@ -91,12 +108,19 @@ void SecondaryWindow::on_AcceptButton_clicked()
     emit selectionClear();
 }
 
+/**
+ * \brief Slot triggered on 'Cancel' button click.
+ * Closes the window.
+ */
 void SecondaryWindow::on_CancelButton_clicked()
 {
     close();
 }
 
-
+/**
+ * \brief Deletes the file or directory at the provided rootPath.
+ * Handles deletion based on existence and type of the item.
+ */
 void SecondaryWindow::deleteFile()
 {
     QFile file(rootPath);
@@ -124,6 +148,10 @@ void SecondaryWindow::deleteFile()
     }
 }
 
+/**
+ * \brief Renames the file specified by rootPath with the new name.
+ * Performs file rename based on existence and validity of the new name.
+ */
 void SecondaryWindow::renameFile()
 {
     QFile file(rootPath);
@@ -148,6 +176,10 @@ void SecondaryWindow::renameFile()
     }
 }
 
+/**
+ * \brief Creates a folder at the specified rootPath with the provided name.
+ * Handles folder creation based on existence and validity of the folder name.
+ */
 void SecondaryWindow::addFolder()
 {
     QDir directoryPath(rootPath);

@@ -17,7 +17,25 @@
 #include <QStringListModel>
 #include <QSettings>
 
-
+/**
+ * \brief The MainWindow class represents the main application window.
+ *
+ * This class manages the primary user interface and orchestrates interactions between various UI elements,
+ * including menus, toolbars, central widgets, and status bars. It serves as the entry point for the application
+ * and handles the initialization and setup of the graphical user interface.
+ *
+ * The MainWindow class provides functionalities for:
+ * - Creating and displaying the main window layout.
+ * - Handling user interactions and events.
+ * - Managing and coordinating different components of the application.
+ * - Connecting signals and slots for communication between UI elements and backend logic.
+ * - Loading settings, managing resources, and initializing essential components on startup.
+ *
+ * Inherited from QMainWindow, it extends the QMainWindow functionalities with specific features
+ * tailored to the application's needs.
+ *
+ * \see QMainWindow
+ */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow),
@@ -31,13 +49,19 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->FileContainerFrame->installEventFilter(this);
 
-
+    // Establish connections for various signals and slots
+    // Connection for file explorer instance signals
+    // - Trigger population of file viewer and tree view based on file selection events
     QObject::connect(fileExplorerInstance, &FileExplorer::SelectionDone, this, &MainWindow::PopulateFileViewer);
     QObject::connect(fileExplorerInstance, &FileExplorer::SelectionDone, this, &MainWindow::ShowTree);
     QObject::connect(fileExplorerInstance, &FileExplorer::FileSelected, this, &MainWindow::GetSelectedItemPath);
 
+    // Connection for tree view clicked signal
+    // - Handles click events on the tree view in the file explorer
     QObject::connect(ui->TreeView, &QTreeView::clicked, fileExplorerInstance, &FileExplorer::OnTreeViewItemClicked);
 
+    // Connection for file viewer clicked and double-clicked signals
+    // - Handles click and double-click events on the file viewer list
     QObject::connect(ui->FileViewer, &QListView::clicked, fileExplorerInstance, &FileExplorer::OnListViewItemClicked);
     QObject::connect(ui->FileViewer, &QListView::doubleClicked, this, &MainWindow::onListViewItemDoubleClicked);
 
@@ -45,16 +69,16 @@ MainWindow::MainWindow(QWidget *parent)
     fileExplorerInstance->setupFileSystemModel(QDir::rootPath());
     localFileSystemModel->setRootPath(QDir::rootPath());
     ui->TreeView->collapseAll();
-
-
-    ui->TreeView->header()->resizeSection(0, 300);
-    splitterLeftAndRightPanels();
     PopulateFileViewer(nullptr);
 
-
+    //On first use make sure all code loaded properly.
     on_LightDarkModeCheckBox_stateChanged(ui->LightDarkModeCheckBox->checkState());
     on_LayoutCheckBox_stateChanged(ui->LayoutCheckBox->checkState());
     on_HideFilesCheckBox_stateChanged(ui->HideFilesCheckBox->checkState());
+
+    ui->TreeView->header()->resizeSection(0, 250);
+    splitterLeftAndRightPanels();
+
 
 
     loadLayout();
@@ -65,6 +89,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/*!
+ * \brief Handles specific events by filtering them through the event filter.
+ * Monitors the resize event to trigger a layout handling function.
+ *
+ * \param obj The object to filter events for.
+ * \param event The event that occurred.
+ * \return True if the event is processed; otherwise, returns the base class implementation.
+ */
 bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
     if (obj == ui->FileContainerFrame && event->type() == QEvent::Resize) {
         handleFileContainerFrameResize();
@@ -73,6 +105,12 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
     return QMainWindow::eventFilter(obj, event);
 }
 
+/*!
+ * \brief Event triggered when the main window is about to close.
+ * Saves the current state of the splitter and layout settings before closing.
+ *
+ * \param event The close event.
+ */
 void MainWindow::closeEvent(QCloseEvent *event) {
     QSettings settings("Organization", "Application");
     settings.setValue("SplitterSizes", splitter->saveState());
@@ -80,6 +118,10 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     QMainWindow::closeEvent(event);
 }
 
+/*!
+ * \brief Loads saved layout settings to the application settings.
+ * Stores the window size, checkbox states, root path, and splitter sizes.
+ */
 void MainWindow::loadLayout()
 {
     QSettings settings("MyApp", "MyAppSettings");
@@ -109,6 +151,10 @@ void MainWindow::loadLayout()
     loadStyleSheet();
 }
 
+/*!
+ * \brief Saves the current layout settings to the application settings.
+ * Stores the window size, checkbox states, root path.
+ */
 void MainWindow::saveLayout()
 {
     QSettings settings("MyApp", "MyAppSettings");
@@ -123,7 +169,9 @@ void MainWindow::saveLayout()
     settings.sync();
 }
 
-
+/*!
+ * \brief Updates UI elements, background colors and style sheets based on the selected mode (light or dark).
+ */
 void MainWindow::loadStyleSheet()
 {
     QString resourcePath;
@@ -132,7 +180,7 @@ void MainWindow::loadStyleSheet()
     {
         resourcePath = ":/StyleSheet/StyleSheet_Light.txt";
 
-        styleSheet = "background-color: #1a0b27;";
+        styleSheet = "background-color: #2a2a2a;";
         ui->BottomMainLine->setStyleSheet(styleSheet);
         ui->TopMainLine->setStyleSheet(styleSheet);
         ui->FileManagement_Line_1->setStyleSheet(styleSheet);
@@ -153,7 +201,7 @@ void MainWindow::loadStyleSheet()
         ui->FileManagement_Line_2->setStyleSheet(styleSheet);
         ui->FileManagement_Line_3->setStyleSheet(styleSheet);
 
-        styleSheet = "background-color: #1a0b27;";
+        styleSheet = "background-color: #2a2a2a;";
         ui->TreeView->setStyleSheet(styleSheet);
         ui->FileViewer->setStyleSheet(styleSheet);
     }
@@ -171,6 +219,12 @@ void MainWindow::loadStyleSheet()
     ui->centralwidget->setStyleSheet(styleSheetContent);
 }
 
+/*!
+ * \brief Updates the icon color by appending a prefix for light or dark mode.
+ *
+ * @param filePath The file path of the icon to update.
+ * @return The updated file path with the appropriate color prefix added.
+ */
 QString MainWindow::updateIconColorName(QString filePath)
 {
     QString prefix = ui->LightDarkModeCheckBox->isChecked() ? "B" : "W";
@@ -184,13 +238,16 @@ QString MainWindow::updateIconColorName(QString filePath)
     return updatedFilePath;
 }
 
+/*!
+ * \brief Updates the icons of buttons based on the selected light/dark mode.
+ */
 void MainWindow::updateIconsToMode()
 {
     QString updatedIcon = updateIconColorName("copy.png");
     QIcon icon(updatedIcon);
     ui->CopyButton->setIcon(icon);
 
-    updatedIcon = updateIconColorName("Drive.png");
+    updatedIcon = updateIconColorName("drive.png");
     icon.addFile(updatedIcon);
     ui->DirectoryButton->setIcon(icon);
 
@@ -202,7 +259,7 @@ void MainWindow::updateIconsToMode()
     icon.addFile(updatedIcon);
     ui->DeleteFile->setIcon(icon);
 
-    updatedIcon = updateIconColorName("Folder.png");
+    updatedIcon = updateIconColorName("folder.png");
     icon.addFile(updatedIcon);
     ui->AddFolder->setIcon(icon);
 
@@ -212,6 +269,9 @@ void MainWindow::updateIconsToMode()
     on_LayoutCheckBox_stateChanged(ui->LayoutCheckBox->checkState());
 }
 
+/*!
+ * \brief Handles the resizing of the file container frame and refreshes the file viewer accordingly.
+ */
 void MainWindow::handleFileContainerFrameResize()
 {
     ui->FileViewer->resize(ui->FileContainerFrame->size());
@@ -234,6 +294,12 @@ void MainWindow::handleFileContainerFrameResize()
     }
 }
 
+/*!
+ * \brief Updates the tree view with the provided file system model.
+ * Sets the root path of the models, displays the tree view, and scrolls to the specified index.
+ *
+ * \param model The file system model to be displayed in the tree view.
+ */
 void MainWindow::ShowTree(QFileSystemModel* model)
 {
     clearListViewSelection();
@@ -256,6 +322,12 @@ void MainWindow::ShowTree(QFileSystemModel* model)
     }
 }
 
+/*!
+ * \brief Populates the file viewer based on the provided file system model.
+ * Updates the file viewer with the contents of the specified directory or model.
+ *
+ * \param model The file system model used to populate the file viewer.
+ */
 void MainWindow::PopulateFileViewer(QFileSystemModel* model)
 {
     clearListViewSelection();
@@ -290,6 +362,9 @@ void MainWindow::PopulateFileViewer(QFileSystemModel* model)
     }
 }
 
+/*!
+ * \brief Splits the left and right panels using a QSplitter.
+ */
 void MainWindow::splitterLeftAndRightPanels()
 {
     QWidget *widgetLeftPanel = ui->LeftPanelWidget;
@@ -313,7 +388,13 @@ void MainWindow::splitterLeftAndRightPanels()
     delete widget;
 }
 
-
+/*!
+ * \brief Handles the action when an item in the list view is double-clicked.
+ * If the selected item is a directory, updates the file system model to the selected directory,
+ * If file, opens an image viewer or a text viewer based on the selected item's file type.
+ *
+ * \param index The index of the selected item.
+ */
 void MainWindow::onListViewItemDoubleClicked(const QModelIndex &index)
 {
     if (index.isValid())
@@ -357,16 +438,31 @@ void MainWindow::onListViewItemDoubleClicked(const QModelIndex &index)
     }
 }
 
+/*!
+ * \brief Sets the list view selected item's path in the MainWindow.
+ *
+ * \param path The path of the selected item.
+ */
 void MainWindow::GetSelectedItemPath(QString path)
 {
     selectedItemPath = path;
 }
 
+/*!
+ * \brief Clears the selection in the list view by resetting the selected item's path.
+ */
 void MainWindow::clearListViewSelection()
 {
     selectedItemPath.clear();
 }
 
+
+/*!
+ * \brief Retrieves the path of the selected item in the tree view.
+ * Clears the previous selection and returns the path of the currently selected item.
+ *
+ * \return The path of the selected item in the tree view.
+ */
 QString MainWindow::treeViewSelectedItemPath()
 {
     clearListViewSelection();
@@ -384,6 +480,10 @@ QString MainWindow::treeViewSelectedItemPath()
     return "";
 }
 
+
+/*!
+ * \brief Toggles the application's theme between light and dark modes.
+ */
 void MainWindow::on_LightDarkModeCheckBox_stateChanged(int state)
 {
     QString styleSheet;
@@ -403,6 +503,10 @@ void MainWindow::on_LightDarkModeCheckBox_stateChanged(int state)
     loadStyleSheet();
 }
 
+/*!
+ * \brief Toggles the file viewer layout between grid and list views.
+ * Changes the icon size and layout mode in the file viewer accordingly.
+ */
 void MainWindow::on_LayoutCheckBox_stateChanged(int state)
 {
     QString styleSheet;
@@ -418,7 +522,7 @@ void MainWindow::on_LayoutCheckBox_stateChanged(int state)
         ui->FileViewer->setItemDelegate(delegate);
     } else
     {
-        QString updatedIcon = updateIconColorName("List.png");
+        QString updatedIcon = updateIconColorName("list.png");
         styleSheet = QString("QCheckBox#LayoutCheckBox::indicator:unchecked { image: url(%1); width: 24px; height: 24px;}").arg(updatedIcon);
         ui->FileViewer->setViewMode(QListView::ListMode);
         ItemNameModifierDelegate* delegate = new ItemNameModifierDelegate(this);
@@ -430,13 +534,16 @@ void MainWindow::on_LayoutCheckBox_stateChanged(int state)
     handleFileContainerFrameResize();
 }
 
+/*!
+ * \brief Toggles the visibility of folders in the file viewer.
+ */
 void MainWindow::on_HideFilesCheckBox_stateChanged(int state)
 {
     QString styleSheet;
 
     if (state == Qt::Checked)
     {
-        QString updatedIcon = updateIconColorName("Eye_off.png");
+        QString updatedIcon = updateIconColorName("eye_off.png");
         styleSheet = QString("QCheckBox#HideFilesCheckBox::indicator:checked { image: url(%1); width: 24px; height: 24px;}").arg(updatedIcon);
     } else
     {
@@ -448,6 +555,11 @@ void MainWindow::on_HideFilesCheckBox_stateChanged(int state)
     ui->HideFilesCheckBox->setStyleSheet(styleSheet);
 }
 
+
+/*!
+ * \brief Opens a file dialog to select a directory and updates the displayed directory path.
+ * Also updates the file system model with the selected directory.
+ */
 void MainWindow::on_DirectoryButton_clicked()
 {
     QString selectedDirectory = QFileDialog::getExistingDirectory(this, tr("Select Directory"),
@@ -458,12 +570,19 @@ void MainWindow::on_DirectoryButton_clicked()
     FileExplorer::getInstance()->setupFileSystemModel(selectedDirectory);
 }
 
+/*!
+ * \brief Copies the text displayed in the directory text field to the clipboard.
+ */
 void MainWindow::on_CopyButton_clicked()
 {
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(ui->DirectoryTextDisplay->displayText());
 }
 
+/*!
+ * \brief Opens a secondary window for adding a new folder to the selected directory.
+ *        If no directory is selected, uses the current tree view selection.
+ */
 void MainWindow::on_AddFolder_clicked()
 {
     if(selectedItemPath.isEmpty())
@@ -477,6 +596,10 @@ void MainWindow::on_AddFolder_clicked()
     secondaryWindow->show();
 }
 
+/*!
+ * \brief Opens a secondary window for renaming the selected file.
+ *        Does nothing if no file is selected.
+ */
 void MainWindow::on_RenameFile_clicked()
 {
     if(selectedItemPath.isEmpty())
@@ -490,6 +613,10 @@ void MainWindow::on_RenameFile_clicked()
     secondaryWindow->show();
 }
 
+/*!
+ * \brief Opens a secondary window for deleting the selected file.
+ *        Does nothing if no file is selected.
+ */
 void MainWindow::on_DeleteFile_clicked()
 {
     if(selectedItemPath.isEmpty())

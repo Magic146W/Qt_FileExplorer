@@ -6,7 +6,15 @@
 #include <QTextEdit>
 #include <QLabel>
 #include <QPixmap>
+/**
+ * \brief The FileViewerWindow class manages the display of text and image files in a QDialog window.
+ */
 
+/**
+ * \brief Constructs a FileViewerWindow object with the specified parent.
+ *
+ * \param parent The parent QWidget.
+ */
 FileViewerWindow::FileViewerWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::FileViewerWindow)
@@ -19,6 +27,14 @@ FileViewerWindow::~FileViewerWindow()
     delete ui;
 }
 
+/**
+ * \brief Loads and displays the content of a text file in a QTextEdit within the dialog window.
+ *
+ * Reads the content of the text file at the specified file path, limits the text to 100 lines, and displays it
+ * within a QTextEdit widget in the dialog window.
+ *
+ * \param filePath The path of the text file to be displayed.
+ */
 void FileViewerWindow::loadTextFile(const QString& filePath)
 {
     QTextEdit* textEdit = new QTextEdit(this);
@@ -47,6 +63,14 @@ void FileViewerWindow::loadTextFile(const QString& filePath)
     ui->ShowFileWidget->layout()->addWidget(textEdit);
 }
 
+/**
+ * \brief Opens and displays an image file in a QLabel within the dialog window.
+ *
+ * Loads the image file at the specified file path, scales it to fit the dialog window while maintaining aspect ratio,
+ * and displays it within a QLabel widget in the dialog window.
+ *
+ * \param filePath The path of the image file to be displayed.
+ */
 void FileViewerWindow::openImage(const QString& filePath)
 {
     QLabel* imageLabel = new QLabel(this);

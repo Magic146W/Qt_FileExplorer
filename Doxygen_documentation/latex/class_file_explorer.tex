@@ -1,0 +1,102 @@
+\doxysection{File\+Explorer Class Reference}
+\hypertarget{class_file_explorer}{}\label{class_file_explorer}\index{FileExplorer@{FileExplorer}}
+\doxysubsubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_file_explorer_ac714c9e8f1ceb71be9a03d8f2ffaeaf3}{On\+Tree\+View\+Item\+Clicked}} (const QModel\+Index \&index)
+\begin{DoxyCompactList}\small\item\em Handles the event of a tree view item being clicked. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_file_explorer_a9609bb7fd80d3655c02059cdee2015e1}{On\+List\+View\+Item\+Clicked}} (const QModel\+Index \&index)
+\begin{DoxyCompactList}\small\item\em Handles the event of a list view item being clicked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_file_explorer_aa6d2af633b7e1ce45c3a4ce9e4552770}\label{class_file_explorer_aa6d2af633b7e1ce45c3a4ce9e4552770} 
+void {\bfseries Selection\+Done} (QFile\+System\+Model \texorpdfstring{$\ast$}{*}model)
+\item 
+\Hypertarget{class_file_explorer_a0e7f4766c562ad8dced7a592f2de9b14}\label{class_file_explorer_a0e7f4766c562ad8dced7a592f2de9b14} 
+void {\bfseries File\+Selected} (const QString \&file\+Path)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_file_explorer_ab5de0094e35a47d2bcf888e7c8f0a7e2}{setup\+File\+System\+Model}} (const QString \&selected\+Directory=QString())
+\begin{DoxyCompactList}\small\item\em Sets up the file system model with the selected directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_file_explorer}{File\+Explorer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_file_explorer_a93b62c68b9c611fa1e4ea6dbbff4664a}{get\+Instance}} (QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Returns the instance of the \doxylink{class_file_explorer}{File\+Explorer} singleton object with the specified parent. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_file_explorer_a93b62c68b9c611fa1e4ea6dbbff4664a}\label{class_file_explorer_a93b62c68b9c611fa1e4ea6dbbff4664a} 
+\index{FileExplorer@{FileExplorer}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!FileExplorer@{FileExplorer}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_file_explorer}{File\+Explorer}} \texorpdfstring{$\ast$}{*} File\+Explorer\+::get\+Instance (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the instance of the \doxylink{class_file_explorer}{File\+Explorer} singleton object with the specified parent. 
+
+If the \doxylink{class_file_explorer}{File\+Explorer} instance does not exist, it creates one and sets the specified parent. This class follows the Singleton design pattern, ensuring only one instance exists throughout the application.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent QObject. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+File\+Explorer\texorpdfstring{$\ast$}{*} A pointer to the \doxylink{class_file_explorer}{File\+Explorer} singleton instance. 
+\end{DoxyReturn}
+\Hypertarget{class_file_explorer_a9609bb7fd80d3655c02059cdee2015e1}\label{class_file_explorer_a9609bb7fd80d3655c02059cdee2015e1} 
+\index{FileExplorer@{FileExplorer}!OnListViewItemClicked@{OnListViewItemClicked}}
+\index{OnListViewItemClicked@{OnListViewItemClicked}!FileExplorer@{FileExplorer}}
+\doxysubsubsection{\texorpdfstring{OnListViewItemClicked}{OnListViewItemClicked}}
+{\footnotesize\ttfamily void File\+Explorer\+::\+On\+List\+View\+Item\+Clicked (\begin{DoxyParamCaption}\item[{const QModel\+Index \&}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Handles the event of a list view item being clicked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the list view item clicked. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_file_explorer_ac714c9e8f1ceb71be9a03d8f2ffaeaf3}\label{class_file_explorer_ac714c9e8f1ceb71be9a03d8f2ffaeaf3} 
+\index{FileExplorer@{FileExplorer}!OnTreeViewItemClicked@{OnTreeViewItemClicked}}
+\index{OnTreeViewItemClicked@{OnTreeViewItemClicked}!FileExplorer@{FileExplorer}}
+\doxysubsubsection{\texorpdfstring{OnTreeViewItemClicked}{OnTreeViewItemClicked}}
+{\footnotesize\ttfamily void File\+Explorer\+::\+On\+Tree\+View\+Item\+Clicked (\begin{DoxyParamCaption}\item[{const QModel\+Index \&}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Handles the event of a tree view item being clicked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the tree view item clicked. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_file_explorer_ab5de0094e35a47d2bcf888e7c8f0a7e2}\label{class_file_explorer_ab5de0094e35a47d2bcf888e7c8f0a7e2} 
+\index{FileExplorer@{FileExplorer}!setupFileSystemModel@{setupFileSystemModel}}
+\index{setupFileSystemModel@{setupFileSystemModel}!FileExplorer@{FileExplorer}}
+\doxysubsubsection{\texorpdfstring{setupFileSystemModel()}{setupFileSystemModel()}}
+{\footnotesize\ttfamily void File\+Explorer\+::setup\+File\+System\+Model (\begin{DoxyParamCaption}\item[{const QString \&}]{selected\+Directory = {\ttfamily QString()} }\end{DoxyParamCaption})}
+
+
+
+Sets up the file system model with the selected directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected\+Directory} & The selected directory path. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/macwe/\+Documents/\+Qt-\/\+Projects/\+Qt\+\_\+\+File\+Explorer/fileexplorer.\+h\item 
+C\+:/\+Users/macwe/\+Documents/\+Qt-\/\+Projects/\+Qt\+\_\+\+File\+Explorer/fileexplorer.\+cpp\end{DoxyCompactItemize}

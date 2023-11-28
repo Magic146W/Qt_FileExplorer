@@ -12,7 +12,7 @@ margin:0;
 
   
 
-color: #d8cee2;
+color: #b8b8b8;
 
 font-family: Helvetica;
 
@@ -24,7 +24,7 @@ font-size: 16px;
 
 #centralwidget{
 
-background-color:#20122d;
+background-color:#1e1e1e;
 
 }
 

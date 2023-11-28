@@ -1,0 +1,113 @@
+\doxysection{Main\+Window Class Reference}
+\hypertarget{class_main_window}{}\label{class_main_window}\index{MainWindow@{MainWindow}}
+\doxysubsubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_main_window_af309eebc9a89cf046fc67631dcf37e52}{Get\+Selected\+Item\+Path}} (QString path)
+\begin{DoxyCompactList}\small\item\em Sets the list view selected item\textquotesingle{}s path in the \doxylink{class_main_window}{Main\+Window}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_main_window_af2e37b325b19fa734f1d83c150e0c90d}\label{class_main_window_af2e37b325b19fa734f1d83c150e0c90d} 
+void {\bfseries resized} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{Main\+Window}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em The \doxylink{class_main_window}{Main\+Window} class represents the main application window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_main_window_aeaecedc36266ab4571b7af2a9fcd5b08}{event\+Filter}} (QObject \texorpdfstring{$\ast$}{*}obj, QEvent \texorpdfstring{$\ast$}{*}event) override
+\begin{DoxyCompactList}\small\item\em Handles specific events by filtering them through the event filter. Monitors the resize event to trigger a layout handling function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_main_window_a05fb9d72c044aa3bb7d187b994704e2f}{close\+Event}} (QClose\+Event \texorpdfstring{$\ast$}{*}event) override
+\begin{DoxyCompactList}\small\item\em Event triggered when the main window is about to close. Saves the current state of the splitter and layout settings before closing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_main_window_a996c5a2b6f77944776856f08ec30858d}\label{class_main_window_a996c5a2b6f77944776856f08ec30858d} 
+\index{MainWindow@{MainWindow}!MainWindow@{MainWindow}}
+\index{MainWindow@{MainWindow}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{MainWindow()}{MainWindow()}}
+{\footnotesize\ttfamily Main\+Window\+::\+Main\+Window (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+The \doxylink{class_main_window}{Main\+Window} class represents the main application window. 
+
+This class manages the primary user interface and orchestrates interactions between various UI elements, including menus, toolbars, central widgets, and status bars. It serves as the entry point for the application and handles the initialization and setup of the graphical user interface.
+
+The \doxylink{class_main_window}{Main\+Window} class provides functionalities for\+:
+\begin{DoxyItemize}
+\item Creating and displaying the main window layout.
+\item Handling user interactions and events.
+\item Managing and coordinating different components of the application.
+\item Connecting signals and slots for communication between UI elements and backend logic.
+\item Loading settings, managing resources, and initializing essential components on startup.
+\end{DoxyItemize}
+
+Inherited from QMain\+Window, it extends the QMain\+Window functionalities with specific features tailored to the application\textquotesingle{}s needs.
+
+\begin{DoxySeeAlso}{See also}
+QMain\+Window 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_main_window_a05fb9d72c044aa3bb7d187b994704e2f}\label{class_main_window_a05fb9d72c044aa3bb7d187b994704e2f} 
+\index{MainWindow@{MainWindow}!closeEvent@{closeEvent}}
+\index{closeEvent@{closeEvent}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{closeEvent()}{closeEvent()}}
+{\footnotesize\ttfamily void Main\+Window\+::close\+Event (\begin{DoxyParamCaption}\item[{QClose\+Event \texorpdfstring{$\ast$}{*}}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Event triggered when the main window is about to close. Saves the current state of the splitter and layout settings before closing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The close event. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_main_window_aeaecedc36266ab4571b7af2a9fcd5b08}\label{class_main_window_aeaecedc36266ab4571b7af2a9fcd5b08} 
+\index{MainWindow@{MainWindow}!eventFilter@{eventFilter}}
+\index{eventFilter@{eventFilter}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{eventFilter()}{eventFilter()}}
+{\footnotesize\ttfamily bool Main\+Window\+::event\+Filter (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{obj,  }\item[{QEvent \texorpdfstring{$\ast$}{*}}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Handles specific events by filtering them through the event filter. Monitors the resize event to trigger a layout handling function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object to filter events for. \\
+\hline
+{\em event} & The event that occurred. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the event is processed; otherwise, returns the base class implementation. 
+\end{DoxyReturn}
+\Hypertarget{class_main_window_af309eebc9a89cf046fc67631dcf37e52}\label{class_main_window_af309eebc9a89cf046fc67631dcf37e52} 
+\index{MainWindow@{MainWindow}!GetSelectedItemPath@{GetSelectedItemPath}}
+\index{GetSelectedItemPath@{GetSelectedItemPath}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{GetSelectedItemPath}{GetSelectedItemPath}}
+{\footnotesize\ttfamily void Main\+Window\+::\+Get\+Selected\+Item\+Path (\begin{DoxyParamCaption}\item[{QString}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Sets the list view selected item\textquotesingle{}s path in the \doxylink{class_main_window}{Main\+Window}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the selected item. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/macwe/\+Documents/\+Qt-\/\+Projects/\+Qt\+\_\+\+File\+Explorer/mainwindow.\+h\item 
+C\+:/\+Users/macwe/\+Documents/\+Qt-\/\+Projects/\+Qt\+\_\+\+File\+Explorer/mainwindow.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,39 @@
+\doxysection{No\+Empty\+Folders\+Model Class Reference}
+\hypertarget{class_no_empty_folders_model}{}\label{class_no_empty_folders_model}\index{NoEmptyFoldersModel@{NoEmptyFoldersModel}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_no_empty_folders_model_a157bd9253ea50f8f24ecc267fb1827c4}\label{class_no_empty_folders_model_a157bd9253ea50f8f24ecc267fb1827c4} 
+{\bfseries No\+Empty\+Folders\+Model} (QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em The \doxylink{class_no_empty_folders_model}{No\+Empty\+Folders\+Model} class inherits QFile\+System\+Model and modifies the behavior for checking if folders have children. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_no_empty_folders_model_ab1f567d3084d22d0791679b53aeaa4f2}{has\+Children}} (const QModel\+Index \&parent) const override
+\begin{DoxyCompactList}\small\item\em Checks if the provided parent index in the file system model has children (folders with content). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_no_empty_folders_model_ab1f567d3084d22d0791679b53aeaa4f2}\label{class_no_empty_folders_model_ab1f567d3084d22d0791679b53aeaa4f2} 
+\index{NoEmptyFoldersModel@{NoEmptyFoldersModel}!hasChildren@{hasChildren}}
+\index{hasChildren@{hasChildren}!NoEmptyFoldersModel@{NoEmptyFoldersModel}}
+\doxysubsubsection{\texorpdfstring{hasChildren()}{hasChildren()}}
+{\footnotesize\ttfamily bool No\+Empty\+Folders\+Model\+::has\+Children (\begin{DoxyParamCaption}\item[{const QModel\+Index \&}]{parent }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Checks if the provided parent index in the file system model has children (folders with content). 
+
+This function returns true if the parent item is not set as never having children and if the directory iterator indicates the presence of items. It\textquotesingle{}s utilized to eliminate unnecessary folder expansion options.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The model index of the parent item to examine. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the parent item contains children (non-\/empty folders); otherwise, false. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/macwe/\+Documents/\+Qt-\/\+Projects/\+Qt\+\_\+\+File\+Explorer/noemptyfoldersmodel.\+h\item 
+C\+:/\+Users/macwe/\+Documents/\+Qt-\/\+Projects/\+Qt\+\_\+\+File\+Explorer/noemptyfoldersmodel.\+cpp\end{DoxyCompactItemize}
