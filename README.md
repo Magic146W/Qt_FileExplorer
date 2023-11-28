@@ -35,6 +35,9 @@ Light/Dark Mode:
 List view file preferences:
 - Hide or show folders at selected path
 
+![QtFileExplorer](https://github.com/Magic146W/Qt_FileExplorer/assets/88307484/dc0e7d39-8fc3-4c71-87da-4e584785799d)
+
+
 
 License
 This project is developed for learning purposes using the open-source version of Qt Creator. The Qt framework is licensed under the GNU Lesser General Public License (LGPL) version 3.
