@@ -26,4 +26,4 @@ License
 This project is developed for learning purposes using the open-source version of Qt Creator. The Qt framework is licensed under the GNU Lesser General Public License (LGPL) version 3.
 
 Acknowledgments
-Special thanks to the Qt community for their contributions and support.
+Huge thanks to the Qt community, Stack Overflow and to Google itself for graciously answering questions that I didn't know the answers to… cough ...when necessary.
