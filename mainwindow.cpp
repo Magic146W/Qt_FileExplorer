@@ -34,7 +34,6 @@
  * Inherited from QMainWindow, it extends the QMainWindow functionalities with specific features
  * tailored to the application's needs.
  *
- * \see QMainWindow
  */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -89,7 +88,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-/*!
+/**
  * \brief Handles specific events by filtering them through the event filter.
  * Monitors the resize event to trigger a layout handling function.
  *
@@ -105,7 +104,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
     return QMainWindow::eventFilter(obj, event);
 }
 
-/*!
+/**
  * \brief Event triggered when the main window is about to close.
  * Saves the current state of the splitter and layout settings before closing.
  *
@@ -118,7 +117,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     QMainWindow::closeEvent(event);
 }
 
-/*!
+/**
  * \brief Loads saved layout settings to the application settings.
  * Stores the window size, checkbox states, root path, and splitter sizes.
  */
@@ -151,7 +150,7 @@ void MainWindow::loadLayout()
     loadStyleSheet();
 }
 
-/*!
+/**
  * \brief Saves the current layout settings to the application settings.
  * Stores the window size, checkbox states, root path.
  */
@@ -169,7 +168,7 @@ void MainWindow::saveLayout()
     settings.sync();
 }
 
-/*!
+/**
  * \brief Updates UI elements, background colors and style sheets based on the selected mode (light or dark).
  */
 void MainWindow::loadStyleSheet()
@@ -219,7 +218,7 @@ void MainWindow::loadStyleSheet()
     ui->centralwidget->setStyleSheet(styleSheetContent);
 }
 
-/*!
+/**
  * \brief Updates the icon color by appending a prefix for light or dark mode.
  *
  * @param filePath The file path of the icon to update.
@@ -238,7 +237,7 @@ QString MainWindow::updateIconColorName(QString filePath)
     return updatedFilePath;
 }
 
-/*!
+/**
  * \brief Updates the icons of buttons based on the selected light/dark mode.
  */
 void MainWindow::updateIconsToMode()
@@ -269,7 +268,7 @@ void MainWindow::updateIconsToMode()
     on_LayoutCheckBox_stateChanged(ui->LayoutCheckBox->checkState());
 }
 
-/*!
+/**
  * \brief Handles the resizing of the file container frame and refreshes the file viewer accordingly.
  */
 void MainWindow::handleFileContainerFrameResize()
@@ -294,7 +293,7 @@ void MainWindow::handleFileContainerFrameResize()
     }
 }
 
-/*!
+/**
  * \brief Updates the tree view with the provided file system model.
  * Sets the root path of the models, displays the tree view, and scrolls to the specified index.
  *
@@ -322,7 +321,7 @@ void MainWindow::ShowTree(QFileSystemModel* model)
     }
 }
 
-/*!
+/**
  * \brief Populates the file viewer based on the provided file system model.
  * Updates the file viewer with the contents of the specified directory or model.
  *
@@ -362,7 +361,7 @@ void MainWindow::PopulateFileViewer(QFileSystemModel* model)
     }
 }
 
-/*!
+/**
  * \brief Splits the left and right panels using a QSplitter.
  */
 void MainWindow::splitterLeftAndRightPanels()
@@ -388,7 +387,7 @@ void MainWindow::splitterLeftAndRightPanels()
     delete widget;
 }
 
-/*!
+/**
  * \brief Handles the action when an item in the list view is double-clicked.
  * If the selected item is a directory, updates the file system model to the selected directory,
  * If file, opens an image viewer or a text viewer based on the selected item's file type.
@@ -438,7 +437,7 @@ void MainWindow::onListViewItemDoubleClicked(const QModelIndex &index)
     }
 }
 
-/*!
+/**
  * \brief Sets the list view selected item's path in the MainWindow.
  *
  * \param path The path of the selected item.
@@ -448,7 +447,7 @@ void MainWindow::GetSelectedItemPath(QString path)
     selectedItemPath = path;
 }
 
-/*!
+/**
  * \brief Clears the selection in the list view by resetting the selected item's path.
  */
 void MainWindow::clearListViewSelection()
@@ -457,7 +456,7 @@ void MainWindow::clearListViewSelection()
 }
 
 
-/*!
+/**
  * \brief Retrieves the path of the selected item in the tree view.
  * Clears the previous selection and returns the path of the currently selected item.
  *
@@ -481,7 +480,7 @@ QString MainWindow::treeViewSelectedItemPath()
 }
 
 
-/*!
+/**
  * \brief Toggles the application's theme between light and dark modes.
  */
 void MainWindow::on_LightDarkModeCheckBox_stateChanged(int state)
@@ -503,7 +502,7 @@ void MainWindow::on_LightDarkModeCheckBox_stateChanged(int state)
     loadStyleSheet();
 }
 
-/*!
+/**
  * \brief Toggles the file viewer layout between grid and list views.
  * Changes the icon size and layout mode in the file viewer accordingly.
  */
@@ -534,7 +533,7 @@ void MainWindow::on_LayoutCheckBox_stateChanged(int state)
     handleFileContainerFrameResize();
 }
 
-/*!
+/**
  * \brief Toggles the visibility of folders in the file viewer.
  */
 void MainWindow::on_HideFilesCheckBox_stateChanged(int state)
@@ -556,7 +555,7 @@ void MainWindow::on_HideFilesCheckBox_stateChanged(int state)
 }
 
 
-/*!
+/**
  * \brief Opens a file dialog to select a directory and updates the displayed directory path.
  * Also updates the file system model with the selected directory.
  */
@@ -570,7 +569,7 @@ void MainWindow::on_DirectoryButton_clicked()
     FileExplorer::getInstance()->setupFileSystemModel(selectedDirectory);
 }
 
-/*!
+/**
  * \brief Copies the text displayed in the directory text field to the clipboard.
  */
 void MainWindow::on_CopyButton_clicked()
@@ -579,7 +578,7 @@ void MainWindow::on_CopyButton_clicked()
     clipboard->setText(ui->DirectoryTextDisplay->displayText());
 }
 
-/*!
+/**
  * \brief Opens a secondary window for adding a new folder to the selected directory.
  *        If no directory is selected, uses the current tree view selection.
  */
@@ -596,7 +595,7 @@ void MainWindow::on_AddFolder_clicked()
     secondaryWindow->show();
 }
 
-/*!
+/**
  * \brief Opens a secondary window for renaming the selected file.
  *        Does nothing if no file is selected.
  */
@@ -613,7 +612,7 @@ void MainWindow::on_RenameFile_clicked()
     secondaryWindow->show();
 }
 
-/*!
+/**
  * \brief Opens a secondary window for deleting the selected file.
  *        Does nothing if no file is selected.
  */

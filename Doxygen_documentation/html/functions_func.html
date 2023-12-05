@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,9 +25,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Qt_FileExplorer<span id="projectnumber">&#160;1</span>
+   <div id="projectname">Qt_FileExplorer<span id="projectnumber">&#160;1.1v</span>
    </div>
-   <div id="projectbrief">Simple file explorer made for learning purposes</div>
+   <div id="projectbrief">file explorer application developed using the Qt framework</div>
   </td>
  </tr>
  </tbody>
@@ -48,6 +52,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_func.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -70,34 +90,129 @@ $(function() {
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all documented functions with links to the class documentation for each member:</div><ul>
+<div class="textblock">Here is a list of all documented functions with links to the class documentation for each member:</div>
+
+<h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
+<li>addFolder()&#160;:&#160;<a class="el" href="class_secondary_window.html#a1d86b83f65f3099a424eaf2727ba4345">SecondaryWindow</a></li>
+</ul>
+
+
+<h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>clearListViewSelection()&#160;:&#160;<a class="el" href="class_main_window.html#acfdebbb868e518f6cff569f9b9bef721">MainWindow</a></li>
 <li>closeEvent()&#160;:&#160;<a class="el" href="class_main_window.html#a05fb9d72c044aa3bb7d187b994704e2f">MainWindow</a></li>
+</ul>
+
+
+<h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
 <li>data()&#160;:&#160;<a class="el" href="class_file_list_model.html#a91d12bffec0ae14f721d665bcaeeb6bc">FileListModel</a></li>
+<li>deleteFile()&#160;:&#160;<a class="el" href="class_secondary_window.html#a2f0334db5afade754bafcd44711088a7">SecondaryWindow</a></li>
+</ul>
+
+
+<h3><a id="index_e" name="index_e"></a>- e -</h3><ul>
 <li>eventFilter()&#160;:&#160;<a class="el" href="class_main_window.html#aeaecedc36266ab4571b7af2a9fcd5b08">MainWindow</a></li>
+</ul>
+
+
+<h3><a id="index_f" name="index_f"></a>- f -</h3><ul>
 <li>FileListModel()&#160;:&#160;<a class="el" href="class_file_list_model.html#a5b9a47f7aea7d968d51134e2467135b9">FileListModel</a></li>
 <li>FileViewerWindow()&#160;:&#160;<a class="el" href="class_file_viewer_window.html#ae5cbff879fb2218dbfab81458e830b40">FileViewerWindow</a></li>
+</ul>
+
+
+<h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
 <li>getInstance()&#160;:&#160;<a class="el" href="class_file_explorer.html#a93b62c68b9c611fa1e4ea6dbbff4664a">FileExplorer</a></li>
 <li>GetSelectedItemPath()&#160;:&#160;<a class="el" href="class_main_window.html#af309eebc9a89cf046fc67631dcf37e52">MainWindow</a></li>
+</ul>
+
+
+<h3><a id="index_h" name="index_h"></a>- h -</h3><ul>
+<li>handleFileContainerFrameResize()&#160;:&#160;<a class="el" href="class_main_window.html#ab976c619a4de669e37c375fceb639165">MainWindow</a></li>
 <li>hasChildren()&#160;:&#160;<a class="el" href="class_no_empty_folders_model.html#ab1f567d3084d22d0791679b53aeaa4f2">NoEmptyFoldersModel</a></li>
+</ul>
+
+
+<h3><a id="index_i" name="index_i"></a>- i -</h3><ul>
 <li>ItemNameModifierDelegate()&#160;:&#160;<a class="el" href="class_item_name_modifier_delegate.html#a7a3a4bb0fbe51a95d2301e2a18930cad">ItemNameModifierDelegate</a></li>
+</ul>
+
+
+<h3><a id="index_l" name="index_l"></a>- l -</h3><ul>
+<li>loadLayout()&#160;:&#160;<a class="el" href="class_main_window.html#ae7b7947c2627ce667c69e8392f090f78">MainWindow</a></li>
+<li>loadNecessaryData()&#160;:&#160;<a class="el" href="class_secondary_window.html#a05bc36ec5047aa443f30827da32573db">SecondaryWindow</a></li>
+<li>loadStyleSheet()&#160;:&#160;<a class="el" href="class_main_window.html#a2130e7173116992144b73305ed8123ae">MainWindow</a></li>
 <li>loadTextFile()&#160;:&#160;<a class="el" href="class_file_viewer_window.html#ae99a47d08de1ef8d400ac3fa9067828f">FileViewerWindow</a></li>
+</ul>
+
+
+<h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
 <li>MainWindow()&#160;:&#160;<a class="el" href="class_main_window.html#a996c5a2b6f77944776856f08ec30858d">MainWindow</a></li>
+</ul>
+
+
+<h3><a id="index_n" name="index_n"></a>- n -</h3><ul>
 <li>NoEmptyFoldersModel()&#160;:&#160;<a class="el" href="class_no_empty_folders_model.html#a157bd9253ea50f8f24ecc267fb1827c4">NoEmptyFoldersModel</a></li>
+</ul>
+
+
+<h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
+<li>on_AcceptButton_clicked()&#160;:&#160;<a class="el" href="class_secondary_window.html#a3eb46bef2b18ddb7b7ba26a37df7676b">SecondaryWindow</a></li>
+<li>on_AddFolder_clicked()&#160;:&#160;<a class="el" href="class_main_window.html#ac3a7708f354e43d67131bb70ac1bef0b">MainWindow</a></li>
+<li>on_CancelButton_clicked()&#160;:&#160;<a class="el" href="class_secondary_window.html#ae28765343198632b26edb84d8ce182fe">SecondaryWindow</a></li>
+<li>on_CopyButton_clicked()&#160;:&#160;<a class="el" href="class_main_window.html#a8fd43a20aaa1ea7bc178bfa157f7993c">MainWindow</a></li>
+<li>on_DeleteFile_clicked()&#160;:&#160;<a class="el" href="class_main_window.html#a9edc9e15ee77f817903cf0b6b21be57b">MainWindow</a></li>
+<li>on_DirectoryButton_clicked()&#160;:&#160;<a class="el" href="class_main_window.html#af0aeb2d5facfea3077036f6f8d6ccd69">MainWindow</a></li>
+<li>on_HideFilesCheckBox_stateChanged()&#160;:&#160;<a class="el" href="class_main_window.html#a2c47c5c814a97596456ad292608212b9">MainWindow</a></li>
+<li>on_LayoutCheckBox_stateChanged()&#160;:&#160;<a class="el" href="class_main_window.html#a779e69ad19da2e06df4da1a486b4cbb5">MainWindow</a></li>
+<li>on_LightDarkModeCheckBox_stateChanged()&#160;:&#160;<a class="el" href="class_main_window.html#a892c17bf1cc3bc2cba6e69326e4a8d08">MainWindow</a></li>
+<li>on_RenameFile_clicked()&#160;:&#160;<a class="el" href="class_main_window.html#a3ec214290855c63c62477be7a61d22fe">MainWindow</a></li>
 <li>OnListViewItemClicked()&#160;:&#160;<a class="el" href="class_file_explorer.html#a9609bb7fd80d3655c02059cdee2015e1">FileExplorer</a></li>
+<li>onListViewItemDoubleClicked()&#160;:&#160;<a class="el" href="class_main_window.html#a5eb8ed9d99ba3be74f41a383e3e5f647">MainWindow</a></li>
 <li>OnTreeViewItemClicked()&#160;:&#160;<a class="el" href="class_file_explorer.html#ac714c9e8f1ceb71be9a03d8f2ffaeaf3">FileExplorer</a></li>
 <li>openImage()&#160;:&#160;<a class="el" href="class_file_viewer_window.html#a7daff2c567d2f31adf473bd0ca106ae7">FileViewerWindow</a></li>
+</ul>
+
+
+<h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
 <li>paint()&#160;:&#160;<a class="el" href="class_item_name_modifier_delegate.html#a47de952441182bc7253ca6e14c6c956f">ItemNameModifierDelegate</a></li>
+<li>PopulateFileViewer()&#160;:&#160;<a class="el" href="class_main_window.html#a6fd81ead1d06986979c5f5adafb9dcfe">MainWindow</a></li>
+</ul>
+
+
+<h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
+<li>renameFile()&#160;:&#160;<a class="el" href="class_secondary_window.html#a7c3270f8efad3412ea1fb7b02f57d0ea">SecondaryWindow</a></li>
 <li>rowCount()&#160;:&#160;<a class="el" href="class_file_list_model.html#a20e614ee41e9e680b8b7e4378c6c274c">FileListModel</a></li>
+</ul>
+
+
+<h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>saveLayout()&#160;:&#160;<a class="el" href="class_main_window.html#aa00b272a4501c42347c0947579d7cf83">MainWindow</a></li>
 <li>SecondaryWindow()&#160;:&#160;<a class="el" href="class_secondary_window.html#a5c0c5026e48ef2a256aba761eebbe755">SecondaryWindow</a></li>
 <li>setCustomSize()&#160;:&#160;<a class="el" href="class_item_name_modifier_delegate.html#ac855d4118d4cd1c8fb2768ff84abe97f">ItemNameModifierDelegate</a></li>
 <li>setFileData()&#160;:&#160;<a class="el" href="class_file_list_model.html#a92196da3cf761d9b0f32a947ace860aa">FileListModel</a></li>
 <li>setupFileSystemModel()&#160;:&#160;<a class="el" href="class_file_explorer.html#ab5de0094e35a47d2bcf888e7c8f0a7e2">FileExplorer</a></li>
+<li>ShowTree()&#160;:&#160;<a class="el" href="class_main_window.html#a0d567f04a061933bb7d6d46921fc53c6">MainWindow</a></li>
 <li>sizeHint()&#160;:&#160;<a class="el" href="class_item_name_modifier_delegate.html#ad47eda31fde3cd094a2dde09cc68f613">ItemNameModifierDelegate</a></li>
+<li>splitterLeftAndRightPanels()&#160;:&#160;<a class="el" href="class_main_window.html#a0a790cc646ac0f53e438e3661a9b4d73">MainWindow</a></li>
+</ul>
+
+
+<h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
+<li>treeViewSelectedItemPath()&#160;:&#160;<a class="el" href="class_main_window.html#a7cf7517d6dece89b58437ec6560a8cf4">MainWindow</a></li>
+</ul>
+
+
+<h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
+<li>updateIconColorName()&#160;:&#160;<a class="el" href="class_main_window.html#a16a7a92128d518a9d3b41b5443bb893b">MainWindow</a></li>
+<li>updateIconsToMode()&#160;:&#160;<a class="el" href="class_main_window.html#abfdc1bdae48e39cb742911331a498bae">MainWindow</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,9 +25,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Qt_FileExplorer<span id="projectnumber">&#160;1</span>
+   <div id="projectname">Qt_FileExplorer<span id="projectnumber">&#160;1.1v</span>
    </div>
-   <div id="projectbrief">Simple file explorer made for learning purposes</div>
+   <div id="projectbrief">file explorer application developed using the Qt framework</div>
   </td>
  </tr>
  </tbody>
@@ -52,6 +56,23 @@ $(function() {
 $(document).ready(function() { init_codefold(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('mainwindow_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -73,11 +94,6 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="dir_c2a89988c890fe9c739e9d090cbdaad5.html">macwe</a></li><li class="navelem"><a class="el" href="dir_5d38b7c9752e47a598dda8a97e7b9e97.html">Documents</a></li><li class="navelem"><a class="el" href="dir_1f7d8e5bf1526518d714a4af627af276.html">Qt-Projects</a></li><li class="navelem"><a class="el" href="dir_0e7b44fb27576c78b6af4daac9168919.html">Qt_FileExplorer</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">mainwindow.h</div></div>
 </div><!--header-->
@@ -107,20 +123,20 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_class" href="class_main_window.html">~MainWindow</a>();</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">private</span> slots:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> on_LightDarkModeCheckBox_stateChanged(<span class="keywordtype">int</span> state);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> on_LayoutCheckBox_stateChanged(<span class="keywordtype">int</span> state);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> on_HideFilesCheckBox_stateChanged(<span class="keywordtype">int</span> state);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> on_DirectoryButton_clicked();</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> on_CopyButton_clicked();</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> on_AddFolder_clicked();</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> on_RenameFile_clicked();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> on_DeleteFile_clicked();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#a892c17bf1cc3bc2cba6e69326e4a8d08">on_LightDarkModeCheckBox_stateChanged</a>(<span class="keywordtype">int</span> state);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#a779e69ad19da2e06df4da1a486b4cbb5">on_LayoutCheckBox_stateChanged</a>(<span class="keywordtype">int</span> state);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#a2c47c5c814a97596456ad292608212b9">on_HideFilesCheckBox_stateChanged</a>(<span class="keywordtype">int</span> state);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#af0aeb2d5facfea3077036f6f8d6ccd69">on_DirectoryButton_clicked</a>();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#a8fd43a20aaa1ea7bc178bfa157f7993c">on_CopyButton_clicked</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#ac3a7708f354e43d67131bb70ac1bef0b">on_AddFolder_clicked</a>();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#a3ec214290855c63c62477be7a61d22fe">on_RenameFile_clicked</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#a9edc9e15ee77f817903cf0b6b21be57b">on_DeleteFile_clicked</a>();</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> onListViewItemDoubleClicked(<span class="keyword">const</span> QModelIndex &amp;index);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> ShowTree(QFileSystemModel* model);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> PopulateFileViewer(QFileSystemModel* model);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> handleFileContainerFrameResize();</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> clearListViewSelection();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#a5eb8ed9d99ba3be74f41a383e3e5f647">onListViewItemDoubleClicked</a>(<span class="keyword">const</span> QModelIndex &amp;index);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#a0d567f04a061933bb7d6d46921fc53c6">ShowTree</a>(QFileSystemModel* model);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#a6fd81ead1d06986979c5f5adafb9dcfe">PopulateFileViewer</a>(QFileSystemModel* model);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#ab976c619a4de669e37c375fceb639165">handleFileContainerFrameResize</a>();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_main_window.html#acfdebbb868e518f6cff569f9b9bef721">clearListViewSelection</a>();</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">public</span> slots:</div>
@@ -138,14 +154,14 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    QSplitter *splitter;</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    QString selectedItemPath;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    QString treeViewSelectedItemPath();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> splitterLeftAndRightPanels();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    QString <a class="code hl_function" href="class_main_window.html#a7cf7517d6dece89b58437ec6560a8cf4">treeViewSelectedItemPath</a>();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_main_window.html#a0a790cc646ac0f53e438e3661a9b4d73">splitterLeftAndRightPanels</a>();</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">void</span> changeLightDarkMode();</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> loadLayout();</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> loadStyleSheet();</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> saveLayout();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    QString updateIconColorName(QString filePath);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> updateIconsToMode();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_main_window.html#ae7b7947c2627ce667c69e8392f090f78">loadLayout</a>();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_main_window.html#a2130e7173116992144b73305ed8123ae">loadStyleSheet</a>();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_main_window.html#aa00b272a4501c42347c0947579d7cf83">saveLayout</a>();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    QString <a class="code hl_function" href="class_main_window.html#a16a7a92128d518a9d3b41b5443bb893b">updateIconColorName</a>(QString filePath);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_main_window.html#abfdc1bdae48e39cb742911331a498bae">updateIconsToMode</a>();</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">protected</span>:</div>
@@ -160,14 +176,38 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#endif </span><span class="comment">// MAINWINDOW_H</span></div>
 <div class="ttc" id="aclass_file_list_model_html"><div class="ttname"><a href="class_file_list_model.html">FileListModel</a></div><div class="ttdef"><b>Definition</b> filelistmodel.h:7</div></div>
 <div class="ttc" id="aclass_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition</b> mainwindow.h:17</div></div>
-<div class="ttc" id="aclass_main_window_html_a05fb9d72c044aa3bb7d187b994704e2f"><div class="ttname"><a href="class_main_window.html#a05fb9d72c044aa3bb7d187b994704e2f">MainWindow::closeEvent</a></div><div class="ttdeci">void closeEvent(QCloseEvent *event) override</div><div class="ttdoc">Event triggered when the main window is about to close. Saves the current state of the splitter and l...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:114</div></div>
-<div class="ttc" id="aclass_main_window_html_aeaecedc36266ab4571b7af2a9fcd5b08"><div class="ttname"><a href="class_main_window.html#aeaecedc36266ab4571b7af2a9fcd5b08">MainWindow::eventFilter</a></div><div class="ttdeci">bool eventFilter(QObject *obj, QEvent *event) override</div><div class="ttdoc">Handles specific events by filtering them through the event filter. Monitors the resize event to trig...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:100</div></div>
-<div class="ttc" id="aclass_main_window_html_af309eebc9a89cf046fc67631dcf37e52"><div class="ttname"><a href="class_main_window.html#af309eebc9a89cf046fc67631dcf37e52">MainWindow::GetSelectedItemPath</a></div><div class="ttdeci">void GetSelectedItemPath(QString path)</div><div class="ttdoc">Sets the list view selected item's path in the MainWindow.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:446</div></div>
+<div class="ttc" id="aclass_main_window_html_a05fb9d72c044aa3bb7d187b994704e2f"><div class="ttname"><a href="class_main_window.html#a05fb9d72c044aa3bb7d187b994704e2f">MainWindow::closeEvent</a></div><div class="ttdeci">void closeEvent(QCloseEvent *event) override</div><div class="ttdoc">Event triggered when the main window is about to close. Saves the current state of the splitter and l...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:113</div></div>
+<div class="ttc" id="aclass_main_window_html_a0a790cc646ac0f53e438e3661a9b4d73"><div class="ttname"><a href="class_main_window.html#a0a790cc646ac0f53e438e3661a9b4d73">MainWindow::splitterLeftAndRightPanels</a></div><div class="ttdeci">void splitterLeftAndRightPanels()</div><div class="ttdoc">Splits the left and right panels using a QSplitter.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:367</div></div>
+<div class="ttc" id="aclass_main_window_html_a0d567f04a061933bb7d6d46921fc53c6"><div class="ttname"><a href="class_main_window.html#a0d567f04a061933bb7d6d46921fc53c6">MainWindow::ShowTree</a></div><div class="ttdeci">void ShowTree(QFileSystemModel *model)</div><div class="ttdoc">Updates the tree view with the provided file system model. Sets the root path of the models,...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:302</div></div>
+<div class="ttc" id="aclass_main_window_html_a16a7a92128d518a9d3b41b5443bb893b"><div class="ttname"><a href="class_main_window.html#a16a7a92128d518a9d3b41b5443bb893b">MainWindow::updateIconColorName</a></div><div class="ttdeci">QString updateIconColorName(QString filePath)</div><div class="ttdoc">Updates the icon color by appending a prefix for light or dark mode.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:227</div></div>
+<div class="ttc" id="aclass_main_window_html_a2130e7173116992144b73305ed8123ae"><div class="ttname"><a href="class_main_window.html#a2130e7173116992144b73305ed8123ae">MainWindow::loadStyleSheet</a></div><div class="ttdeci">void loadStyleSheet()</div><div class="ttdoc">Updates UI elements, background colors and style sheets based on the selected mode (light or dark).</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:174</div></div>
+<div class="ttc" id="aclass_main_window_html_a2c47c5c814a97596456ad292608212b9"><div class="ttname"><a href="class_main_window.html#a2c47c5c814a97596456ad292608212b9">MainWindow::on_HideFilesCheckBox_stateChanged</a></div><div class="ttdeci">void on_HideFilesCheckBox_stateChanged(int state)</div><div class="ttdoc">Toggles the visibility of folders in the file viewer.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:539</div></div>
+<div class="ttc" id="aclass_main_window_html_a3ec214290855c63c62477be7a61d22fe"><div class="ttname"><a href="class_main_window.html#a3ec214290855c63c62477be7a61d22fe">MainWindow::on_RenameFile_clicked</a></div><div class="ttdeci">void on_RenameFile_clicked()</div><div class="ttdoc">Opens a secondary window for renaming the selected file. Does nothing if no file is selected.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:602</div></div>
+<div class="ttc" id="aclass_main_window_html_a5eb8ed9d99ba3be74f41a383e3e5f647"><div class="ttname"><a href="class_main_window.html#a5eb8ed9d99ba3be74f41a383e3e5f647">MainWindow::onListViewItemDoubleClicked</a></div><div class="ttdeci">void onListViewItemDoubleClicked(const QModelIndex &amp;index)</div><div class="ttdoc">Handles the action when an item in the list view is double-clicked. If the selected item is a directo...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:397</div></div>
+<div class="ttc" id="aclass_main_window_html_a6fd81ead1d06986979c5f5adafb9dcfe"><div class="ttname"><a href="class_main_window.html#a6fd81ead1d06986979c5f5adafb9dcfe">MainWindow::PopulateFileViewer</a></div><div class="ttdeci">void PopulateFileViewer(QFileSystemModel *model)</div><div class="ttdoc">Populates the file viewer based on the provided file system model. Updates the file viewer with the c...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:330</div></div>
+<div class="ttc" id="aclass_main_window_html_a779e69ad19da2e06df4da1a486b4cbb5"><div class="ttname"><a href="class_main_window.html#a779e69ad19da2e06df4da1a486b4cbb5">MainWindow::on_LayoutCheckBox_stateChanged</a></div><div class="ttdeci">void on_LayoutCheckBox_stateChanged(int state)</div><div class="ttdoc">Toggles the file viewer layout between grid and list views. Changes the icon size and layout mode in ...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:509</div></div>
+<div class="ttc" id="aclass_main_window_html_a7cf7517d6dece89b58437ec6560a8cf4"><div class="ttname"><a href="class_main_window.html#a7cf7517d6dece89b58437ec6560a8cf4">MainWindow::treeViewSelectedItemPath</a></div><div class="ttdeci">QString treeViewSelectedItemPath()</div><div class="ttdoc">Retrieves the path of the selected item in the tree view. Clears the previous selection and returns t...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:465</div></div>
+<div class="ttc" id="aclass_main_window_html_a892c17bf1cc3bc2cba6e69326e4a8d08"><div class="ttname"><a href="class_main_window.html#a892c17bf1cc3bc2cba6e69326e4a8d08">MainWindow::on_LightDarkModeCheckBox_stateChanged</a></div><div class="ttdeci">void on_LightDarkModeCheckBox_stateChanged(int state)</div><div class="ttdoc">Toggles the application's theme between light and dark modes.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:486</div></div>
+<div class="ttc" id="aclass_main_window_html_a8fd43a20aaa1ea7bc178bfa157f7993c"><div class="ttname"><a href="class_main_window.html#a8fd43a20aaa1ea7bc178bfa157f7993c">MainWindow::on_CopyButton_clicked</a></div><div class="ttdeci">void on_CopyButton_clicked()</div><div class="ttdoc">Copies the text displayed in the directory text field to the clipboard.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:575</div></div>
+<div class="ttc" id="aclass_main_window_html_a9edc9e15ee77f817903cf0b6b21be57b"><div class="ttname"><a href="class_main_window.html#a9edc9e15ee77f817903cf0b6b21be57b">MainWindow::on_DeleteFile_clicked</a></div><div class="ttdeci">void on_DeleteFile_clicked()</div><div class="ttdoc">Opens a secondary window for deleting the selected file. Does nothing if no file is selected.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:619</div></div>
+<div class="ttc" id="aclass_main_window_html_aa00b272a4501c42347c0947579d7cf83"><div class="ttname"><a href="class_main_window.html#aa00b272a4501c42347c0947579d7cf83">MainWindow::saveLayout</a></div><div class="ttdeci">void saveLayout()</div><div class="ttdoc">Saves the current layout settings to the application settings. Stores the window size,...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:157</div></div>
+<div class="ttc" id="aclass_main_window_html_ab976c619a4de669e37c375fceb639165"><div class="ttname"><a href="class_main_window.html#ab976c619a4de669e37c375fceb639165">MainWindow::handleFileContainerFrameResize</a></div><div class="ttdeci">void handleFileContainerFrameResize()</div><div class="ttdoc">Handles the resizing of the file container frame and refreshes the file viewer accordingly.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:274</div></div>
+<div class="ttc" id="aclass_main_window_html_abfdc1bdae48e39cb742911331a498bae"><div class="ttname"><a href="class_main_window.html#abfdc1bdae48e39cb742911331a498bae">MainWindow::updateIconsToMode</a></div><div class="ttdeci">void updateIconsToMode()</div><div class="ttdoc">Updates the icons of buttons based on the selected light/dark mode.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:243</div></div>
+<div class="ttc" id="aclass_main_window_html_ac3a7708f354e43d67131bb70ac1bef0b"><div class="ttname"><a href="class_main_window.html#ac3a7708f354e43d67131bb70ac1bef0b">MainWindow::on_AddFolder_clicked</a></div><div class="ttdeci">void on_AddFolder_clicked()</div><div class="ttdoc">Opens a secondary window for adding a new folder to the selected directory. If no directory is select...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:585</div></div>
+<div class="ttc" id="aclass_main_window_html_acfdebbb868e518f6cff569f9b9bef721"><div class="ttname"><a href="class_main_window.html#acfdebbb868e518f6cff569f9b9bef721">MainWindow::clearListViewSelection</a></div><div class="ttdeci">void clearListViewSelection()</div><div class="ttdoc">Clears the selection in the list view by resetting the selected item's path.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:453</div></div>
+<div class="ttc" id="aclass_main_window_html_ae7b7947c2627ce667c69e8392f090f78"><div class="ttname"><a href="class_main_window.html#ae7b7947c2627ce667c69e8392f090f78">MainWindow::loadLayout</a></div><div class="ttdeci">void loadLayout()</div><div class="ttdoc">Loads saved layout settings to the application settings. Stores the window size, checkbox states,...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:124</div></div>
+<div class="ttc" id="aclass_main_window_html_aeaecedc36266ab4571b7af2a9fcd5b08"><div class="ttname"><a href="class_main_window.html#aeaecedc36266ab4571b7af2a9fcd5b08">MainWindow::eventFilter</a></div><div class="ttdeci">bool eventFilter(QObject *obj, QEvent *event) override</div><div class="ttdoc">Handles specific events by filtering them through the event filter. Monitors the resize event to trig...</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:99</div></div>
+<div class="ttc" id="aclass_main_window_html_af0aeb2d5facfea3077036f6f8d6ccd69"><div class="ttname"><a href="class_main_window.html#af0aeb2d5facfea3077036f6f8d6ccd69">MainWindow::on_DirectoryButton_clicked</a></div><div class="ttdeci">void on_DirectoryButton_clicked()</div><div class="ttdoc">Opens a file dialog to select a directory and updates the displayed directory path....</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:562</div></div>
+<div class="ttc" id="aclass_main_window_html_af309eebc9a89cf046fc67631dcf37e52"><div class="ttname"><a href="class_main_window.html#af309eebc9a89cf046fc67631dcf37e52">MainWindow::GetSelectedItemPath</a></div><div class="ttdeci">void GetSelectedItemPath(QString path)</div><div class="ttdoc">Sets the list view selected item's path in the MainWindow.</div><div class="ttdef"><b>Definition</b> mainwindow.cpp:445</div></div>
 <div class="ttc" id="aclass_no_empty_folders_model_html"><div class="ttname"><a href="class_no_empty_folders_model.html">NoEmptyFoldersModel</a></div><div class="ttdef"><b>Definition</b> noemptyfoldersmodel.h:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="dir_c2a89988c890fe9c739e9d090cbdaad5.html">macwe</a></li><li class="navelem"><a class="el" href="dir_5d38b7c9752e47a598dda8a97e7b9e97.html">Documents</a></li><li class="navelem"><a class="el" href="dir_1f7d8e5bf1526518d714a4af627af276.html">Qt-Projects</a></li><li class="navelem"><a class="el" href="dir_0e7b44fb27576c78b6af4daac9168919.html">Qt_FileExplorer</a></li><li class="navelem"><b>mainwindow.h</b></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

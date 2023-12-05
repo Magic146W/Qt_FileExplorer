@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['haschildren_0',['hasChildren',['../class_no_empty_folders_model.html#ab1f567d3084d22d0791679b53aeaa4f2',1,'NoEmptyFoldersModel']]]
+  ['getinstance_0',['getInstance',['../class_file_explorer.html#a93b62c68b9c611fa1e4ea6dbbff4664a',1,'FileExplorer']]],
+  ['getselecteditempath_1',['GetSelectedItemPath',['../class_main_window.html#af309eebc9a89cf046fc67631dcf37e52',1,'MainWindow']]]
 ];

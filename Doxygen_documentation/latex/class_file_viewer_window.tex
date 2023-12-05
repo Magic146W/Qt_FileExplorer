@@ -1,28 +1,38 @@
 \doxysection{File\+Viewer\+Window Class Reference}
-\hypertarget{class_file_viewer_window}{}\label{class_file_viewer_window}\index{FileViewerWindow@{FileViewerWindow}}
+\label{class_file_viewer_window}\index{FileViewerWindow@{FileViewerWindow}}
+
+
+Inherits QDialog.
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_file_viewer_window_ae5cbff879fb2218dbfab81458e830b40}{File\+Viewer\+Window}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
-\begin{DoxyCompactList}\small\item\em The \doxylink{class_file_viewer_window}{File\+Viewer\+Window} class manages the display of text and image files in a QDialog window. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_file_viewer_window_ae99a47d08de1ef8d400ac3fa9067828f}{load\+Text\+File}} (const QString \&file\+Path)
+\textbf{ File\+Viewer\+Window} (QWidget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em The \doxyref{File\+Viewer\+Window}{p.}{class_file_viewer_window} class manages the display of text and image files in a QDialog window. \end{DoxyCompactList}\item 
+void \textbf{ load\+Text\+File} (const QString \&file\+Path)
 \begin{DoxyCompactList}\small\item\em Loads and displays the content of a text file in a QText\+Edit within the dialog window. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_file_viewer_window_a7daff2c567d2f31adf473bd0ca106ae7}{open\+Image}} (const QString \&file\+Path)
+void \textbf{ open\+Image} (const QString \&file\+Path)
 \begin{DoxyCompactList}\small\item\em Opens and displays an image file in a QLabel within the dialog window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_file_viewer_window_ae77da4d68955e9686b61a491f5f65cd0} 
+Ui\+::\+File\+Viewer\+Window $\ast$ {\bfseries ui}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{class_file_viewer_window_ae5cbff879fb2218dbfab81458e830b40}\label{class_file_viewer_window_ae5cbff879fb2218dbfab81458e830b40} 
+\label{class_file_viewer_window_ae5cbff879fb2218dbfab81458e830b40} 
 \index{FileViewerWindow@{FileViewerWindow}!FileViewerWindow@{FileViewerWindow}}
 \index{FileViewerWindow@{FileViewerWindow}!FileViewerWindow@{FileViewerWindow}}
-\doxysubsubsection{\texorpdfstring{FileViewerWindow()}{FileViewerWindow()}}
-{\footnotesize\ttfamily File\+Viewer\+Window\+::\+File\+Viewer\+Window (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+\doxysubsubsection{FileViewerWindow()}
+{\footnotesize\ttfamily File\+Viewer\+Window\+::\+File\+Viewer\+Window (\begin{DoxyParamCaption}\item[{QWidget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
 
 
-The \doxylink{class_file_viewer_window}{File\+Viewer\+Window} class manages the display of text and image files in a QDialog window. 
+The \doxyref{File\+Viewer\+Window}{p.}{class_file_viewer_window} class manages the display of text and image files in a QDialog window. 
 
-Constructs a \doxylink{class_file_viewer_window}{File\+Viewer\+Window} object with the specified parent.
+Constructs a \doxyref{File\+Viewer\+Window}{p.}{class_file_viewer_window} object with the specified parent.
 
 
 \begin{DoxyParams}{Parameters}
@@ -32,10 +42,10 @@ Constructs a \doxylink{class_file_viewer_window}{File\+Viewer\+Window} object wi
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_file_viewer_window_ae99a47d08de1ef8d400ac3fa9067828f}\label{class_file_viewer_window_ae99a47d08de1ef8d400ac3fa9067828f} 
+\label{class_file_viewer_window_ae99a47d08de1ef8d400ac3fa9067828f} 
 \index{FileViewerWindow@{FileViewerWindow}!loadTextFile@{loadTextFile}}
 \index{loadTextFile@{loadTextFile}!FileViewerWindow@{FileViewerWindow}}
-\doxysubsubsection{\texorpdfstring{loadTextFile()}{loadTextFile()}}
+\doxysubsubsection{loadTextFile()}
 {\footnotesize\ttfamily void File\+Viewer\+Window\+::load\+Text\+File (\begin{DoxyParamCaption}\item[{const QString \&}]{file\+Path }\end{DoxyParamCaption})}
 
 
@@ -49,10 +59,10 @@ Reads the content of the text file at the specified file path, limits the text t
 {\em file\+Path} & The path of the text file to be displayed. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_file_viewer_window_a7daff2c567d2f31adf473bd0ca106ae7}\label{class_file_viewer_window_a7daff2c567d2f31adf473bd0ca106ae7} 
+\label{class_file_viewer_window_a7daff2c567d2f31adf473bd0ca106ae7} 
 \index{FileViewerWindow@{FileViewerWindow}!openImage@{openImage}}
 \index{openImage@{openImage}!FileViewerWindow@{FileViewerWindow}}
-\doxysubsubsection{\texorpdfstring{openImage()}{openImage()}}
+\doxysubsubsection{openImage()}
 {\footnotesize\ttfamily void File\+Viewer\+Window\+::open\+Image (\begin{DoxyParamCaption}\item[{const QString \&}]{file\+Path }\end{DoxyParamCaption})}
 
 

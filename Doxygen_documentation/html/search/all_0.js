@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['closeevent_0',['closeEvent',['../class_main_window.html#a05fb9d72c044aa3bb7d187b994704e2f',1,'MainWindow']]]
+  ['addfolder_0',['addFolder',['../class_secondary_window.html#a1d86b83f65f3099a424eaf2727ba4345',1,'SecondaryWindow']]]
 ];

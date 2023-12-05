@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['data_0',['data',['../class_file_list_model.html#a91d12bffec0ae14f721d665bcaeeb6bc',1,'FileListModel']]]
+  ['clearlistviewselection_0',['clearListViewSelection',['../class_main_window.html#acfdebbb868e518f6cff569f9b9bef721',1,'MainWindow']]],
+  ['closeevent_1',['closeEvent',['../class_main_window.html#a05fb9d72c044aa3bb7d187b994704e2f',1,'MainWindow']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['noemptyfoldersmodel_0',['noemptyfoldersmodel',['../class_no_empty_folders_model.html',1,'NoEmptyFoldersModel'],['../class_no_empty_folders_model.html#a157bd9253ea50f8f24ecc267fb1827c4',1,'NoEmptyFoldersModel::NoEmptyFoldersModel()']]]
+  ['mainwindow_0',['mainwindow',['../class_main_window.html',1,'MainWindow'],['../class_main_window.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow::MainWindow()']]]
 ];
