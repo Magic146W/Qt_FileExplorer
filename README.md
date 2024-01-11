@@ -117,7 +117,7 @@ for example: 'C:\Qt\6.6.0\msvc2019_64\bin' and select the 'qmake.exe' file. Avoi
  File Operations (Use the toolbar buttons or context menu options for file operations):
  * Create folder
  * Rename file or folder
- * Felete file or folder
+ * Delete file or folder
 
  File Preview:
  * Double click on files to open images or text files for preview
