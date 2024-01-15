@@ -24,16 +24,15 @@
 */
 var NAVTREE =
 [
-  [ "Qt_FileExplorer", "index.html", [
-    [ "Qt_FileExplorer", "md__c_1_2_users_2macwe_2_documents_2_qt-_projects_2_qt___file_explorer_2_r_e_a_d_m_e.html", null ],
+  [ "File Manager", "index.html", [
+    [ "README", "md__c_1_2_users_2macwe_2_documents_2_qt-_projects_2_file_manager_2_r_e_a_d_m_e.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Functions", "functions_func.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [

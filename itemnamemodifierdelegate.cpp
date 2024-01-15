@@ -3,14 +3,10 @@
 #include <QApplication>
 #include <QListView>
 /**
- * \brief The ItemNameModifierDelegate class customizes the appearance of items in a view, particularly the text display.
+ * @file itemnamemodifierdelegate.h
+ * \brief The ItemNameModifierDelegate class customizes the appearance of items in QListView, particularly the text display.
  */
 
-/**
- * \brief Constructs an ItemNameModifierDelegate object with the specified parent and sets the default custom size.
- *
- * \param parent The parent QObject.
- */
 ItemNameModifierDelegate::ItemNameModifierDelegate(QObject* parent) : QStyledItemDelegate(parent)
 {
     customSize = QSize(80, 100);
@@ -18,8 +14,6 @@ ItemNameModifierDelegate::ItemNameModifierDelegate(QObject* parent) : QStyledIte
 
 /**
  * \brief Paints the item in the view using customized options.
- *
- * Modifies the style options for painting and then draws the item view.
  *
  * \param painter The QPainter object used for painting.
  * \param option The style options for the item view.
@@ -37,8 +31,6 @@ void ItemNameModifierDelegate::paint(QPainter* painter, const QStyleOptionViewIt
 
 /**
  * \brief Returns the size hint for the item.
- *
- * Returns the custom size for the item view if the index is valid; otherwise, returns the default size.
  *
  * \param option The style options for the item view.
  * \param index The model index of the item.

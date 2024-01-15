@@ -1,4 +1,4 @@
 var dir_1f7d8e5bf1526518d714a4af627af276 =
 [
-    [ "Qt_FileExplorer", "dir_0e7b44fb27576c78b6af4daac9168919.html", "dir_0e7b44fb27576c78b6af4daac9168919" ]
+    [ "FileManager", "dir_9964e1e0bc43e443ef582531e88eec43.html", "dir_9964e1e0bc43e443ef582531e88eec43" ]
 ];

@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/Images">
-        <file>Icons/Mode_Dark.png</file>
-        <file>Icons/Mode_Light.png</file>
         <file>Icons/copyB.png</file>
         <file>Icons/copyW.png</file>
         <file>Icons/driveB.png</file>
@@ -20,6 +18,10 @@
         <file>Icons/listW.png</file>
         <file>Icons/trashB.png</file>
         <file>Icons/trashW.png</file>
+        <file>Icons/showSidePanelB.png</file>
+        <file>Icons/showSidePanelW.png</file>
+        <file>Icons/modeW.png</file>
+        <file>Icons/modeB.png</file>
     </qresource>
     <qresource prefix="/StyleSheet">
         <file>StyleSheet_Light.txt</file>

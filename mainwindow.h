@@ -1,13 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "listviewmanager.h"
+#include "treeviewmanager.h"
+#include "visualmodeupdater.h"
 #include <QMainWindow>
-#include "fileexplorer.h"
-#include "noemptyfoldersmodel.h"
-#include "secondarywindow.h"
-#include "filelistmodel.h"
-#include "fileviewerwindow.h"
 #include <QSplitter>
+#include <QFileSystemModel>
+#include <QListView>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,54 +21,47 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void on_LightDarkModeCheckBox_stateChanged(int state);
-    void on_LayoutCheckBox_stateChanged(int state);
-    void on_HideFilesCheckBox_stateChanged(int state);
-    void on_DirectoryButton_clicked();
-    void on_CopyButton_clicked();
-    void on_AddFolder_clicked();
-    void on_RenameFile_clicked();
-    void on_DeleteFile_clicked();
-
-    void onListViewItemDoubleClicked(const QModelIndex &index);
-    void ShowTree(QFileSystemModel* model);
-    void PopulateFileViewer(QFileSystemModel* model);
-    void handleFileContainerFrameResize();
-    void clearListViewSelection();
-
-
-public slots:
-    void GetSelectedItemPath(QString path);
-
-
 private:
     Ui::MainWindow *ui;
-    QWidget *mainWidget;
-    QVBoxLayout *mainLayout;
-    QMap<QObject*, QString> tooltipMap;
-    QFileSystemModel *localFileSystemModel;
-    NoEmptyFoldersModel *noEmptyfolderModel;
-    FileListModel *fileListModel;
+    ListViewManager& listViewManager;
+    TreeViewManager& treeViewManager;
+    VisualModeUpdater& visuals;
     QSplitter *splitter;
 
-    QString selectedItemPath;
-    QString treeViewSelectedItemPath();
-    void splitterLeftAndRightPanels();
-    void changeLightDarkMode();
-    void loadLayout();
-    void loadStyleSheet();
+    void initializeMainWindow();
+    void resizeEvent(QResizeEvent *event);
+    void closeEvent(QCloseEvent *event);
+    QSplitter* splitterLeftAndRightPanels();
+    bool loadLayout();
     void saveLayout();
-    QString updateIconColorName(QString filePath);
-    void updateIconsToMode();
+    bool isLightMode = true;
+    bool isShowFiles = true;
+    bool isGridLayout = true;
+    void updateIcons();
 
+public slots:
+    void updateTreeView(const QString& path);
+    void openFileViewerDialog(const QString &path, bool isImage);
+    void refresh();
 
-protected:
-    bool eventFilter(QObject *obj, QEvent *event) override;
-    void closeEvent(QCloseEvent *event) override;
+private slots:
+    void on_QPushButton_AddFolder_clicked();
+    void on_QPushButton_DeleteFile_clicked();
+    void on_QPushButton_RenameFile_clicked();
+    void on_QPushButton_CopyButton_clicked();
+    void on_QPushButton_DirectoryButton_clicked();
+    void on_QPushButton_ShowPanel_clicked();
+    void on_QPushButton_LightDarkModePushButton_clicked();
+    void on_QPushButton_LayoutPushButton_clicked();
+    void on_QPushButton_HideFilesPushButton_clicked();
+
+    void handleSplitterMoved(int pos, int index);
 
 signals:
-    void resized();
+    void populateTreeView(const QString &path);
+    void populateListView(const QString &path);
+    void updateHideFilesFilter(bool isVisible);
+    void updateLightModeBooleanData(bool isLight,bool isShowGrid,bool isShowFiles);
 
 };
 #endif // MAINWINDOW_H
