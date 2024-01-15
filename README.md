@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://github.com/Magic146W/Qt_FileExplorer/blob/master/LICENSE)
- 
+
 <br />
 <div align="center">
   <h1 align="center">Qt based File Explorer</h1>
@@ -10,9 +10,7 @@
     <br />
     It efficiently saves your layout preferences and simplifies file previews, enhancing usability.
     <br />
-
-
-  </p>
+  </p> 
 </div>
 <details>
   <summary><h2>Table of Contents</h2></summary>
@@ -45,9 +43,9 @@
   </ol>
 </details>
 
-Currently version v1.0, link to the prototype version's branch [![Prototype](https://img.shields.io/badge/Prototype-blue)](https://github.com/Magic146W/Qt_FileExplorer/tree/Qt_FIleExplorer_prototype)
-
 ## Changes
+
+Currently version v1.0, link to the prototype version's branch [![Prototype](https://img.shields.io/badge/Prototype-blue)](https://github.com/Magic146W/Qt_FileExplorer/tree/Qt_FIleExplorer_prototype)
 
  - Upgraded Qt version from 6.6.0 to 6.6.1, introducing critical improvements and new features to enhance the overall functionality.
  - Changed the underlying build system from MinGW 64-bit to MSVC2019 ARM64, leveraging the benefits of the Microsoft Visual Studio Compiler for optimized performance and compatibility.
@@ -57,6 +55,11 @@ Currently version v1.0, link to the prototype version's branch [![Prototype](htt
  - Streamlined the data management approach by consolidating the file list model into a single, unified file system model, eliminating redundancy and enhancing overall project coherence.
  - Implemented a user-friendly feature allowing users to rename items in the list view by simply holding the left mouse button for over a second on listView item (see Presentation section).
  - Enhanced user interface flexibility by introducing the capability to hide the side buttons panel for a more immersive and customizable user experience (see Presentation section).
+
+  <p align="left">
+   <br/>
+  <i>Use index.html inside Doxygen_Documentation in order to open documentation.</i>
+  </p>
 
 ## About The Project
 
