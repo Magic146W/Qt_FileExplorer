@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://github.com/Magic146W/Qt_FileExplorer/blob/master/LICENSE)
-
+ 
 <br />
 <div align="center">
   <h1 align="center">Qt based File Explorer</h1>
@@ -9,12 +9,17 @@
     Qt_FileExplorer, windows desktop application built with Qt, offers an intuitive interface for file navigation and management.
     <br />
     It efficiently saves your layout preferences and simplifies file previews, enhancing usability.
+    <br />
+
+
   </p>
 </div>
-
 <details>
   <summary><h2>Table of Contents</h2></summary>
   <ol>
+    <li>
+      <a href="#changes">Changes</a>
+    </li>
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
@@ -40,6 +45,19 @@
   </ol>
 </details>
 
+Currently version v1.0, link to the prototype version's branch [![Prototype](https://img.shields.io/badge/Prototype-blue)](https://github.com/Magic146W/Qt_FileExplorer/tree/Qt_FIleExplorer_prototype)
+
+## Changes
+
+ - Upgraded Qt version from 6.6.0 to 6.6.1, introducing critical improvements and new features to enhance the overall functionality.
+ - Changed the underlying build system from MinGW 64-bit to MSVC2019 ARM64, leveraging the benefits of the Microsoft Visual Studio Compiler for optimized performance and compatibility.
+ - Implemented a transition from the QMake build system to a more robust CMake-based system for improved project organization and build efficiency.
+ - Introduced new modular classes to enhance code structure and better distribute responsibilities, resulting in a cleaner and more maintainable codebase.
+ - Conducted a thorough code review, removing redundant sections and optimizing existing code for improved performance and readability.
+ - Streamlined the data management approach by consolidating the file list model into a single, unified file system model, eliminating redundancy and enhancing overall project coherence.
+ - Implemented a user-friendly feature allowing users to rename items in the list view by simply holding the left mouse button for over a second on listView item (see Presentation section).
+ - Enhanced user interface flexibility by introducing the capability to hide the side buttons panel for a more immersive and customizable user experience (see Presentation section).
+
 ## About The Project
 
  Qt_FileExplorer is a hands-on study project designed to bring theoretical concepts of the Qt framework into practical implementation. By exploring this project, you'll gain practical insights into various fundamental concepts:
@@ -54,7 +72,7 @@
 
 ### Built With
 
-[![Qt](https://img.shields.io/badge/Qt-%23217346.svg?style=for-the-badge&logo=Qt&logoColor=white)](https://www.qt.io/download-open-source) Used as the primary Integrated Development Environment (IDE) for coding the Qt_FileExplorer project. Version 6.6.0.
+[![Qt](https://img.shields.io/badge/Qt-%23217346.svg?style=for-the-badge&logo=Qt&logoColor=white)](https://www.qt.io/download-open-source) Used as the primary Integrated Development Environment (IDE) for coding the Qt_FileExplorer project. Version 6.6.1.
 <br>
 <a href="https://www.doxygen.nl/">
   Doxygen
@@ -69,28 +87,24 @@ For the project to function properly, user must have either Qt Creator or Visual
 ### Prerequisites
 
 **QT**<br>
-You will need Qt version 6.6.0 or newer, along with the Developer and Designer Tools. If you're unsure whether these tools are installed or if they are not installed, open the Qt Maintenance Tool by navigating to:
+You will need Qt version 6.6.1 or newer, along with the Developer and Designer Tools. If you're unsure whether these tools are installed or if they are not installed, open the Qt Maintenance Tool by navigating to:
 "Tools > Qt Maintenance Tool > Start Maintenance Tool" (select the necessary options in the 'Select Components' tab)
 <br>
 
 **Visual Studio**<br>
-If you prefer using the Visual Studio IDE, you will need the 'Qt Visual Studio Tools' extension. If you encounter any issues with the extension, consider downloading and using older version '
-<a href="https://download.qt.io/development_releases/vsaddin/2.8.0/">
-  Qt Visual Studio Tools 2.8.0
-</a>
-' as an attempt to resolve any problems. 
-<br>Also you must add the Qt version in the Options. To do this, select "Tools > Options..." and search for 'Qt' and select Version. Then, choose 'Add' and specify the path, 
-for example: 'C:\Qt\6.6.0\msvc2019_64\bin' and select the 'qmake.exe' file. Avoid using MinGW path as Visual Studio does not support it, which may prevent the addition of the Qt version.
+If you prefer using the Visual Studio IDE, ensure that you have the necessary components installed. Access the Visual Studio Installer, modify your Visual Studio IDE, and search for the 'C++ CMake tools for Windows' in the 'Individual Components' tab. Install it if needed. Alternatively, you can install the C++ Windows package, ensuring to select CMake if you haven't installed C++ yet.
     
 ### Getting project to run on Visual Studio
 
- 1. Navigate "File > Clone Repository..." and select folder for repository (https://github.com/Magic146W/Qt_FileExplorer.git).
+1. Navigate "File > Clone Repository..." and select folder for repository <a href="https://github.com/Magic146W/Qt_FileExplorer.git">https://github.com/Magic146W/Qt_FileExplorer.git</a>.
 
-2. After the project loads, navigate to "Extensions > Qt VS Tools > Open Qt Project File (.pro)...
- - If you encounter an error stating "qmake has generated a .vcproj file, but it needs to be converted...", you might need to manually open "Qt_FileExplorer.vcxproj" from the project directory. Also, ensure to install any necessary packages highlighted by Visual Studio.
+2. Setting Up CMake for Visual Studio:
+- Open Visual Studio and go to “File &gt; Open &gt; CMake…” and select CMakeLists.txt inside your working directory<br>
+  - If you don’t find the CMake option, please go through prerequisites for VS<br>
+  -  The first time you open this option, an overview of CMake in Visual Studio will appear. Once done, repeat the process of opening CMake from "File &gt; Open" and select your working directory, then choose CMakeLists.txt.<br>
+-  Wait for the project to build.
+3. To run the project, either click the green arrow with "Qt Application" written next to it or press F5.
 
-3. Select "File > Open > Project/Solution..." and open "Qt_FileExplorer.vcxproj" inside repository folder.
-4. Project is ready to run by pressing on "►Local Windows Debugger".
 
 ### Getting project to run on Qt Creator
 
@@ -98,14 +112,12 @@ for example: 'C:\Qt\6.6.0\msvc2019_64\bin' and select the 'qmake.exe' file. Avoi
    ```sh
    git clone https://github.com/Magic146W/Qt_FileExplorer.git
    ```
-2. Open the project by clicking on Qt_FileExplorer.pro from the cloned directory.
-3. When opening the project for the first time or if not previously configured, select the kit "Desktop Qt 6.6.0 MinGW 64-bit" or a newer version and click on "Configure Project."
+2. Open the project by clicking on CMakeLists.txt inside of the cloned directory.
+3. When opening the project for the first time or if not previously configured, select the kit "Desktop Qt 6.6.1 MSVC2019 64bit" or a newer version and click on "Configure Project."
 4. Wait for the initial project setup and build to finish.
 5. Run the project by clicking the green arrow or using the shortcut Ctrl+R.
-<br>This updated version highlights that the project should be opened by clicking on the Qt_FileExplorer.pro file if it was previously configured, emphasizing its importance for starting the project in Qt Creator..
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Usage
 
  File Navigation: 
@@ -122,8 +134,12 @@ for example: 'C:\Qt\6.6.0\msvc2019_64\bin' and select the 'qmake.exe' file. Avoi
  File Preview:
  * Double click on files to open images or text files for preview
 
+ File Rename (from listView):
+ * Hold left mouse button pressed on selected list view item for +1 seconds
+
  Layout Preferences:
  * Switch between grid and list view using the layout checkbox
+ * Hide or show buttons side panel with highlighted vertical button
 
  Light/Dark Mode:
  * Toggle between light and dark mode using the dedicated checkbox
@@ -142,6 +158,20 @@ for example: 'C:\Qt\6.6.0\msvc2019_64\bin' and select the 'qmake.exe' file. Avoi
 
  ![egzample 2](https://github.com/Magic146W/Qt_FileExplorer/assets/88307484/8dbff956-b800-48e1-ae37-87abb2d2841b)]
  
+<br>
+<br>
+
+NEW! - Renaming from listView
+<br>
+![NEW! - Renaming](https://github.com/Magic146W/Qt_FileExplorer/assets/88307484/c08ab6f9-fff2-44f7-9731-edac50389868)]
+
+<br>
+<br>
+
+NEW! - Hide/Show buttons Panel
+<br>
+![NEW - Hide/Show buttons panel](https://github.com/Magic146W/Qt_FileExplorer/assets/88307484/206421e3-6b05-4ca7-87e8-03eda7bf0567)]
+
 <br>
 <br>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
