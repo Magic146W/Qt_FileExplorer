@@ -48,7 +48,7 @@
 Currently version v1.0, link to the prototype version's branch [![Prototype](https://img.shields.io/badge/Prototype-blue)](https://github.com/Magic146W/Qt_FileExplorer/tree/Qt_FIleExplorer_prototype)
 
  - Upgraded Qt version from 6.6.0 to 6.6.1, introducing critical improvements and new features to enhance the overall functionality.
- - Changed the underlying build system from MinGW 64-bit to MSVC2019 ARM64, leveraging the benefits of the Microsoft Visual Studio Compiler for optimized performance and compatibility.
+ - Changed the underlying build system from MinGW 64-bit to MSVC2019 64bit, leveraging the benefits of the Microsoft Visual Studio Compiler for optimized performance and compatibility.
  - Implemented a transition from the QMake build system to a more robust CMake-based system for improved project organization and build efficiency.
  - Introduced new modular classes to enhance code structure and better distribute responsibilities, resulting in a cleaner and more maintainable codebase.
  - Conducted a thorough code review, removing redundant sections and optimizing existing code for improved performance and readability.
